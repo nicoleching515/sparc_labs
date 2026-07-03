@@ -500,7 +500,7 @@ function SectionHead({ kicker, meta, cta, children }) {
 }
 
 function EditNote({ children }) {
-  return <div className="placeholder-note">{children}</div>;
+  return null;
 }
 
 function Objectives() {
