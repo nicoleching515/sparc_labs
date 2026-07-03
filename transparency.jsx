@@ -133,7 +133,7 @@ function SectionHead({ kicker, meta, children }) {
 }
 
 function EditNote({ children }) {
-  return null;
+  return <div className="placeholder-note">{children}</div>;
 }
 
 function PageHead() {
