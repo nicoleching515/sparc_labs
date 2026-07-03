@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>SPARC Labs · Constitution</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="The full constitution of SPARC Labs — a student-led AI research group at Caltech." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Playfair+Display:wght@600;700&display=swap" />
+
+  <style>
+    doc-page:not(:defined) { visibility: hidden; }
+
+    :root {
+      --ink:    #1c1815;
+      --ink-2:  #4a433b;
+      --muted:  #8a8073;
+      --line:   #e4ddd0;
+      --accent: #d94f00;
+      --labs:   #9c5f3f;
+      --sans:   "IBM Plex Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+      --serif:  "IBM Plex Serif", Georgia, serif;
+      --mono:   "IBM Plex Mono", ui-monospace, Menlo, monospace;
+    }
+
+    body { margin: 0; background: #cfc7b6; }
+    doc-page { color: var(--ink); font-family: var(--serif); font-size: 11.5pt; line-height: 1.62; }
+
+    /* ---- running header / footer ---- */
+    .run-head, .run-foot {
+      display: flex; align-items: center; justify-content: space-between;
+      font-family: var(--mono); font-size: 8pt; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--muted);
+    }
+    .run-head { border-bottom: 1px solid var(--line); padding-bottom: 8px; }
+    .run-foot { border-top: 1px solid var(--line); padding-top: 8px; }
+    .run-head .wm { color: var(--ink); letter-spacing: 0.14em; }
+    .run-head .wm b { color: var(--accent); font-weight: 700; }
+    .run-head .wm i { font-family: var(--serif); font-style: normal; color: var(--labs); letter-spacing: 0; }
+
+    /* ---- title block ---- */
+    .doc-title { margin: 4px 0 34px; }
+    .doc-title .ey {
+      font-family: var(--mono); font-size: 8.5pt; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--muted); display: block; margin-bottom: 14px;
+    }
+    .doc-title h1 {
+      margin: 0; font-family: var(--sans); font-weight: 700; letter-spacing: -0.02em;
+      font-size: 40pt; line-height: 0.98; color: var(--accent);
+    }
+    .doc-title h1 .labs {
+      font-family: "Playfair Display", var(--serif); color: var(--labs); font-weight: 600;
+    }
+    .doc-title .sub {
+      margin: 12px 0 0; font-family: var(--sans); font-weight: 500; font-size: 15pt;
+      color: var(--ink);
+    }
+    .doc-dates {
+      display: flex; gap: 40px; margin-top: 18px;
+      font-family: var(--mono); font-size: 8.5pt; letter-spacing: 0.06em; color: var(--ink-2);
+    }
+    .doc-dates b { color: var(--muted); font-weight: 500; text-transform: uppercase; letter-spacing: 0.12em; display: block; margin-bottom: 3px; }
+
+    /* ---- articles ---- */
+    article { margin: 0 0 26px; break-inside: avoid; }
+    article h2 {
+      margin: 0 0 12px; padding-bottom: 9px; border-bottom: 1px solid var(--line);
+      font-family: var(--sans); font-weight: 600; font-size: 14.5pt; letter-spacing: -0.01em;
+      color: var(--ink); display: flex; align-items: baseline; gap: 14px;
+    }
+    article h2 .an {
+      font-family: var(--mono); font-size: 9.5pt; font-weight: 500; letter-spacing: 0.1em;
+      color: var(--accent); flex: none; min-width: 82px; text-transform: uppercase;
+    }
+    article p { margin: 0 0 11px; }
+    article p:last-child { margin-bottom: 0; }
+    ul { margin: 0 0 11px; padding-left: 20px; }
+    li { margin: 0 0 7px; }
+    .roles { list-style: none; padding-left: 0; }
+    .roles li { padding-left: 0; }
+    .roles b { font-family: var(--sans); font-weight: 600; color: var(--accent); }
+    .sub-h {
+      font-family: var(--sans); font-weight: 600; font-size: 10.5pt; color: var(--ink);
+      margin: 16px 0 8px;
+    }
+    .note {
+      margin-top: 8px; font-style: italic; color: var(--ink-2);
+    }
+
+    @media print { body { background: #fff; } }
+  </style>
+</head>
+<body>
+  <template id="__bundler_thumbnail">
+    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <rect width="100" height="100" fill="#f3eee0"/>
+      <text x="50" y="52" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-weight="700" font-size="18" fill="#d94f00">SPARC</text>
+      <text x="50" y="70" text-anchor="middle" font-family="Playfair Display, Georgia, serif" font-weight="600" font-size="13" fill="#9c5f3f">Labs</text>
+    </svg>
+  </template>
+
+  <doc-page size="letter" margin="0.85in">
+    <div class="run-head" slot="header">
+      <span class="wm"><b>SPARC</b> <i>Labs</i></span>
+      <span>Constitution</span>
+    </div>
+    <div class="run-foot" slot="footer">
+      <span>Adopted 3 July 2026</span>
+      <span>California Institute of Technology</span>
+    </div>
+
+    <div class="doc-title">
+      <span class="ey">Governance &amp; Records</span>
+      <h1>SPARC <span class="labs">Labs</span></h1>
+      <p class="sub">Constitution</p>
+      <div class="doc-dates">
+        <span><b>Date adopted</b>July 3, 2026</span>
+        <span><b>Last revised</b>June 25, 2026</span>
+      </div>
+    </div>
+
+    <article>
+      <h2><span class="an">Article I</span> Name</h2>
+      <p>The official name for this club is SPARC Labs.</p>
+    </article>
+
+    <article>
+      <h2><span class="an">Article II</span> Purpose</h2>
+      <p>The purpose of this organization is to be a student-led academic research group based at Caltech, dedicated to fostering interest in machine learning and artificial intelligence. Our members collaborate with both industry partners and academic laboratories across a broad range of subfields, providing a platform for students to pursue novel AI research and cultivating a strong AI research community on campus. The club is committed to producing meaningful research contributions, supporting student growth across all experience levels, and connecting members to the wider AI research ecosystem.</p>
+      <p>The organization shall operate in alignment with the Caltech Honor Code, Institute policies, and expectations for recognized student clubs and organizations.</p>
+    </article>
+
+    <article>
+      <h2><span class="an">Article III</span> Membership</h2>
+      <ul>
+        <li>All currently enrolled undergraduate and graduate students may become members of SPARC Labs.</li>
+        <li>Other members of the Caltech community, such as staff, faculty, spouses of current students, and JPL staff, may participate in club activities as affiliates. As such, they may not assume officer or other leadership positions.</li>
+        <li>Non-Caltech affiliated individuals may not hold positions within Caltech student clubs and organizations.</li>
+        <li>SPARC Labs will maintain at least a 60/40 percent ratio of student members to affiliate members. If the club falls below this threshold, it may lose recognition during the academic year.</li>
+        <li>All members are required to demonstrate support for the purpose of this club.</li>
+        <li>Membership decisions shall not discriminate on the basis of race, color, religion, creed, national origin, ethnicity, ancestry, age, disability, sex, gender, gender identity or expression, sexual orientation, veteran status, or any other protected status under applicable law or Institute policy.</li>
+      </ul>
+      <p class="sub-h">Rights &amp; benefits</p>
+      <p>Members may participate in club research projects, attend speaker events and general meetings, access the club Discord community, and take part in club-sponsored conference activities. Research Members may contribute directly to active research groups and projects, while General Members may attend events and participate in the broader club community. There is significant fluidity between these levels of involvement, and members may move between them as their participation changes. All members in good standing may nominate themselves or others for officer positions.</p>
+      <p class="sub-h">Expectations</p>
+      <p>Research Members are expected to participate consistently in their research group's work, attend relevant project meetings, and uphold standards of academic integrity. All members are expected to act in good faith and with transparency in research collaborations, including the disclosure of any conflicts of interest related to authorship, credit, or intellectual property.</p>
+    </article>
+
+    <article>
+      <h2><span class="an">Article IV</span> Meetings &amp; Events</h2>
+      <p>Regular club meetings will be held on campus weekly during the academic year.</p>
+      <p>Clubs are responsible for registering applicable events through the required Caltech event registration process. Events requiring registration may include, but are not limited to:</p>
+      <ul>
+        <li>All events with alcohol service, whether hosted on or off campus.</li>
+        <li>Events on campus with 50 or more people (without alcohol).</li>
+        <li>Off-campus events with 30 or more people and/or when a group is traveling 30 miles or more from campus (house retreats, ski trips, ASCIT and GSC formals, etc.).</li>
+        <li>Any event with special access or materials (pumpkin drop, LN2, animals, etc.).</li>
+        <li>Events that include construction.</li>
+        <li>Campus rallies, protests, demonstrations, vigils, and memorials.</li>
+        <li>Events that feature a non-Caltech guest speaker.</li>
+        <li>Events that involve hosting another campus or program (Hacktech, Introduce a Girl to STEM Day, etc.).</li>
+        <li>Any event where RLCs or club advisors request registration.</li>
+      </ul>
+      <p>If an event is being held in an academic building, the division's policy regarding room reservations and whether registration through this process is required should be checked. Clubs are responsible for reserving appropriate spaces, following venue-specific rules, and complying with all applicable safety, accessibility, alcohol, minors, travel, speaker, and risk-management requirements.</p>
+    </article>
+
+    <article>
+      <h2><span class="an">Article V</span> Officers &amp; Elections</h2>
+      <p>Officers shall be elected by eligible student members through a fair and transparent process. Only currently enrolled students may hold leadership positions and vote in officer elections. Elections shall take place once per academic year, unless otherwise approved by the Office of Student and Family Engagement.</p>
+      <p>Officers are elected through a process that combines member nominations with a confirmation vote. Nominations are open to all currently enrolled student members, who may nominate themselves or another member for any open position. The board reviews nominated candidates and presents a slate to the membership. Eligible student members then vote to confirm officers, with candidates receiving a majority of votes cast being elected. Elections are held once per academic year, typically near the end of the spring term, so that incoming officers can transition before the following year. Only currently enrolled students may be nominated, hold office, and vote.</p>
+      <p class="sub-h">Officer descriptions &amp; duties</p>
+      <ul class="roles">
+        <li><b>Director.</b> Arranges weekly meetings, establishes club focus and direction, provides oversight for other officer roles, and maintains communication with the faculty advisor. The club may have up to two individuals serving jointly in this lead role as Co-Directors.</li>
+        <li><b>Treasurer.</b> Manages the club budget, the Bursar's account, and reimbursements, and oversees funding and financial record-keeping. Corresponds with the Head of Research regarding project funding and maintains transparent financial records available to the board upon request.</li>
+        <li><b>Secretary.</b> Records and distributes meeting minutes and maintains the club's internal records.</li>
+        <li><b>Head of Research.</b> Reviews research proposals, corresponds with the Treasurer regarding funding, writes and manages grant applications, and tracks all active projects including their progress, timeline, and scope.</li>
+        <li><b>Head of Events.</b> Sends outreach emails to potential speakers, industry partners, and laboratories, manages club member communications, and maintains the club website.</li>
+      </ul>
+      <p class="sub-h">Vacancies</p>
+      <p>If an officer position becomes vacant, the board may appoint a replacement member to serve the remainder of the term.</p>
+      <p class="sub-h">Removal of officers</p>
+      <p>Officers may be removed by a majority vote of the board for failure to fulfill responsibilities, violation of club expectations, or violation of Institute policy. The board shall provide the officer notice and an opportunity to respond before a vote is held. Officer removal shall be done in consultation with the club advisor and the Office of Student and Family Engagement.</p>
+    </article>
+
+    <article>
+      <h2><span class="an">Article VI</span> Club Funds</h2>
+      <p>Club funds shall be used only for purposes consistent with the club's mission and Institute policies. All club banking must be done through the Bursar's office via a Club Bursar Account.</p>
+      <p>Clubs must consult with the Office of Student and Family Engagement (SFE) and/or Career Achievement, Leadership, and Exploration (CALE) before fundraising from a non-Caltech entity, whether alumni, other individuals, corporations, foundations, or others, and before engaging in any plans for sales or commercial sponsorships from non-Caltech entities.</p>
+      <p>The Treasurer is the primary officer authorized to request purchases and reimbursements. The Co-Directors may also request purchases with Treasurer and board awareness. Spending decisions are approved by the board; no single officer shall have unilateral authority over significant expenditures without board approval.</p>
+      <p>The Treasurer maintains transparent financial records of all expenditures and reimbursements through the Club Bursar Account, and makes these records available to the board upon request.</p>
+    </article>
+
+    <article>
+      <h2><span class="an">Article VII</span> Club Advisor</h2>
+      <p>Recognized student clubs and organizations at the California Institute of Technology are required to have an advisor who is a full-time Caltech faculty member, staff member, or postdoc.</p>
+      <p>Student club leaders are responsible for managing the club. The advisor provides guidance and support but does not serve as the primary decision-maker for club operations. Meetings with the club advisor will be held once per term, or as needed.</p>
+    </article>
+
+    <article>
+      <h2><span class="an">Article IX</span> Conduct &amp; Compliance</h2>
+      <p>The club and its members shall comply with the Caltech Honor Code, Institute policies, applicable laws, and expectations for recognized student clubs and organizations. The club shall not engage in hazing, discrimination, harassment, retaliation, or conduct that endangers the health, safety, or well-being of others.</p>
+    </article>
+
+    <article>
+      <h2><span class="an">Article X</span> Research Conflicts of Interest</h2>
+      <p>Members participating in club research groups and projects are expected to act in good faith, with transparency, and in accordance with the Caltech Honor Code and Institute academic integrity policies. Members who fail to meet these expectations place their research project at risk of removal from the club.</p>
+      <p>Conflicts of interest in research — including disputes over authorship, credit, intellectual property, project ownership, and the allocation of research contributions — shall be disclosed and addressed promptly. Members are encouraged to discuss authorship and credit expectations early in a project and to revisit them as contributions evolve. Authorship and credit shall be determined according to standard academic norms, based on the substance of each member's intellectual and practical contributions.</p>
+      <p>In the event of a research conflict that cannot be resolved among the members directly involved, the matter shall first be brought to the board. If the board is unable to reach a resolution, or if a member of the board is party to the conflict, the matter shall be escalated to the club advisor, who will help mediate and reach a resolution. Where necessary, the advisor may involve the Office of Student and Family Engagement. The resolution process is intended to ensure fairness, protect members' contributions and intellectual property, and keep the club's operations within Caltech rules and academic standards.</p>
+    </article>
+
+    <article>
+      <h2><span class="an">Article XI</span> Records &amp; Transition</h2>
+      <p>The club shall maintain accurate records of its constitution, membership, officers, financial activity, and major events. Outgoing officers are responsible for supporting a reasonable transition process for incoming officers.</p>
+    </article>
+
+    <article>
+      <h2><span class="an">Article XII</span> Dissolution</h2>
+      <p>If the club becomes inactive, loses recognition, or dissolves, remaining club funds and property shall be handled in accordance with Caltech policies and procedures. Club assets may not be distributed to individual members.</p>
+    </article>
+
+    <article>
+      <h2><span class="an">Article XIII</span> Amendments</h2>
+      <ul>
+        <li>Caltech policies and procedures shall take precedence over this constitution, its bylaws, and any amendments.</li>
+        <li>Amendments to this constitution may be proposed by any member of the club.</li>
+        <li>Amendments must be approved by a 90% agreement of the board.</li>
+        <li>Amendments become effective after review and approval by the club advisor and the Office of Student and Family Engagement.</li>
+      </ul>
+    </article>
+  </doc-page>
+
+  <script src="doc-page.js"></script>
+</body>
+</html>
