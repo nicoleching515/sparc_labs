@@ -109,9 +109,9 @@ const AREAS = [
 const PUBS = [
 { year: "2026", title: <>BEACON: Belief-Aware Replanning for Safe Online Motion Planning</>, authors: "Ishita Banerjee, Maggie Yufei Bai, Soptorshi Ghosh, Rhea Senan, Ayushi Mehrotra", venue: "IEEE ICRA 2026 Workshop Xplore", tag: "ICRA Workshop Poster", url: "https://openreview.net/forum?id=zxinuYvMp2" /* ✓ paper link */ },
 { year: "2026", title: <>Count Me If You Can: Geometric Failure Modes in Language Model Counting</>, authors: "Nicholas Bai, Ayushi Mehrotra", venue: "ICML 2026 Workshop CompLearn", tag: "ICML Workshop Poster", url: "https://openreview.net/forum?id=8PAXj6x6zn" /* ✓ paper link */ },
-{ year: "2026", title: <>Sparse Autoencoders Find Causal, Lineage-Specific Context Features in Chromatin Foundation Models</>, authors: "Nicole Ching, Ayushi Mehrotra", venue: "ICML 2026 Workshop CompLearn and Mech Interp", tag: "ICML Workshop Poster", url: "#" /* ✎ paste paper link here */ },
-{ year: "2026", title: <>What Does a Chromatin Foundation Model Know About a Petri Dish? Sparse Autoencoders Reveal In Vitro vs. In Vivo Context in EPIBERT</>, authors: "Nicole Ching, Ayushi Mehrotra", venue: "ICML 2026 Workshop GenBio", tag: "ICML Workshop Poster", url: "#" /* ✎ paste paper link here */ },
-{ year: "2026", title: <>Auditing a Multi-Modal Chromatin Foundation Model with Sparse Autoencoders</>, authors: "Nicole Ching, Ayushi Mehrotra", venue: "ICML 2026 Workshop FM4LS", tag: "ICML Workshop Poster", url: "#" /* ✎ paste paper link here */ }];
+{ year: "2026", title: <>Sparse Autoencoders Find Causal, Lineage-Specific Context Features in Chromatin Foundation Models</>, authors: "Nicole Ching, Ayushi Mehrotra", venue: "ICML 2026 Workshop CompLearn and Mech Interp", tag: "ICML Workshop Poster", url: "https://openreview.net/forum?id=exjnua3lM2" /* ✎ paste paper link here */ },
+{ year: "2026", title: <>What Does a Chromatin Foundation Model Know About a Petri Dish? Sparse Autoencoders Reveal In Vitro vs. In Vivo Context in EPIBERT</>, authors: "Nicole Ching, Ayushi Mehrotra", venue: "ICML 2026 Workshop GenBio", tag: "ICML Workshop Poster", url: "https://openreview.net/forum?id=JI9duJaATU" /* ✎ paste paper link here */ },
+{ year: "2026", title: <>Auditing a Multi-Modal Chromatin Foundation Model with Sparse Autoencoders</>, authors: "Nicole Ching, Ayushi Mehrotra", venue: "ICML 2026 Workshop FM4LS", tag: "ICML Workshop Poster", url: "https://openreview.net/forum?id=TaVoSYbvNn" /* ✎ paste paper link here */ }];
 
 
 /* ─── ✎ PARTNERS — two places to edit ─────────────────────────────────
@@ -375,10 +375,10 @@ function MissionMarquee() {
      rows still set to "#" render as non-clickable placeholders).
    • Leave any link as "#" to keep its button/row inert until you have a URL.
    ──────────────────────────────────────────────────────────────── */
-const PROPOSAL_FORM_URL = "#";     /* ✎ "Submit project proposal" Google Form (https://forms.gle/…) */
-const PROJECT_APP_FORM_URL = "#";  /* ✎ "Project application" Google Form (https://forms.gle/…) */
-const INSTAGRAM_URL = "#";         /* ✎ Instagram profile (https://instagram.com/…) */
-const LINKEDIN_URL = "#";          /* ✎ LinkedIn page (https://linkedin.com/company/…) */
+const PROPOSAL_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSffsRmVz9hsWNkF-demoPCnHOiN1inLK79SD2B08jZgZzCZWg/viewform?usp=header";     /* ✎ "Submit project proposal" Google Form (https://forms.gle/…) */
+const PROJECT_APP_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSfOtov00XnxGvh-45_Eg4JBmPVdtISw_H0skR3_JS6RXBIuCg/viewform?usp=header";  /* ✎ "Project application" Google Form (https://forms.gle/…) */
+const INSTAGRAM_URL = "https://www.instagram.com/caltech.sparc.labs/";         /* ✎ Instagram profile (https://instagram.com/…) */
+const LINKEDIN_URL = "https://www.linkedin.com/company/sparc-labs-caltech/posts/?feedView=all";          /* ✎ LinkedIn page (https://linkedin.com/company/…) */
 const MAILING_LIST_URL = "#";      /* ✎ Mailing-list signup link */
 
 /* ─── ✎ CURRENT RESEARCH — auto-populated from a Google Sheet ───────────
