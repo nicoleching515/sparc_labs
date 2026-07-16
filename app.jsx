@@ -719,18 +719,39 @@ function Events() {
 }
 
 const GALLERY = [
-{ src: "gallery/ICML_Group1.jpg", caption: "Presenting “Count Me If You Can” at ICML 2026" },
-{ src: "gallery/ICML_Group2.jpg", caption: "Team SPARC Labs at Coex, ICML 2026 · Seoul" },
-{ src: "gallery/ICML_PosterAM.jpg", caption: "Poster session — geometric failure modes in LM counting" },
-{ src: "gallery/ICML_PosterNB.jpg", caption: "Fielding questions on the counting-geometry poster" },
-{ src: "gallery/ICML_PosterNC.jpg", caption: "Nicole Ching presenting sparse-autoencoder work on chromatin models" }];
+{
+  src: "gallery/ICML_Group1.jpg",
+  caption: "Presenting “Count Me If You Can” at ICML 2026" // ✎ edit this caption
+},
+{
+  src: "gallery/ICML_Group2.jpg",
+  caption: "Team SPARC Labs at Coex, ICML 2026 · Seoul" // ✎ edit this caption
+},
+{
+  src: "gallery/ICML_PosterAM.jpg",
+  caption: "Poster session — geometric failure modes in LM counting" // ✎ edit this caption
+},
+{
+  src: "gallery/ICML_PosterNB.jpg",
+  caption: "Fielding questions on the counting-geometry poster" // ✎ edit this caption
+},
+{
+  src: "gallery/ICML_PosterNC.jpg",
+  caption: "Nicole Ching presenting sparse-autoencoder work on chromatin models" // ✎ edit this caption
+}];
 
 function Moments() {
   const [i, setI] = useState(0);
+  const timerRef = useRef(null);
+  const restartTimer = () => {
+    if (timerRef.current) clearInterval(timerRef.current);
+    timerRef.current = setInterval(() => setI((v) => (v + 1) % GALLERY.length), 5000);
+  };
   useEffect(() => {
-    const id = setInterval(() => setI((v) => (v + 1) % GALLERY.length), 5000);
-    return () => clearInterval(id);
+    restartTimer();
+    return () => clearInterval(timerRef.current);
   }, []);
+  const select = (idx) => { setI(idx); restartTimer(); };
   return (
     <section className="section" id="moments">
       <div className="container">
@@ -748,14 +769,14 @@ function Moments() {
           </div>
           <div className="gallery-thumbs">
             {GALLERY.map((g, idx) =>
-            <button key={idx} className={idx === i ? "gallery-thumb is-active" : "gallery-thumb"}
-              aria-label={`Show photo ${idx + 1}`} onClick={() => setI(idx)}>
+            <button key={idx} type="button" className={idx === i ? "gallery-thumb is-active" : "gallery-thumb"}
+              aria-label={`Show photo ${idx + 1}`} onClick={() => select(idx)}>
                 <img src={g.src} alt="" loading="lazy" />
               </button>
             )}
           </div>
         </div>
-        <EditNote>✎ Add photos: drop a file in gallery/ and add a line to GALLERY in app.jsx</EditNote>
+        <EditNote>✎ Add photos: drop a file in gallery/ and add a line to GALLERY in app.jsx · edit captions right on each GALLERY line</EditNote>
       </div>
     </section>);
 
