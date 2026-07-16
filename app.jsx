@@ -721,23 +721,23 @@ function Events() {
 const GALLERY = [
 {
   src: "gallery/ICML_Group1.jpg",
-  caption: "Presenting “Count Me If You Can” at ICML 2026" // ✎ edit this caption
+  caption: "ICML 2026" // ✎ edit this caption
 },
 {
   src: "gallery/ICML_Group2.jpg",
-  caption: "Team SPARC Labs at Coex, ICML 2026 · Seoul" // ✎ edit this caption
+  caption: "SPARC Labs at Coex Convention Center in Seoul" // ✎ edit this caption
 },
 {
   src: "gallery/ICML_PosterAM.jpg",
-  caption: "Poster session — geometric failure modes in LM counting" // ✎ edit this caption
+  caption: "Ayushi Mehrotra" // ✎ edit this caption
 },
 {
   src: "gallery/ICML_PosterNB.jpg",
-  caption: "Fielding questions on the counting-geometry poster" // ✎ edit this caption
+  caption: "Nicholas Bai" // ✎ edit this caption
 },
 {
   src: "gallery/ICML_PosterNC.jpg",
-  caption: "Nicole Ching presenting sparse-autoencoder work on chromatin models" // ✎ edit this caption
+  caption: "Nicole Ching" // ✎ edit this caption
 }];
 
 function Moments() {
