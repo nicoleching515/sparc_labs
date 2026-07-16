@@ -718,6 +718,49 @@ function Events() {
 
 }
 
+const GALLERY = [
+{ src: "gallery/ICML_Group1.jpg", caption: "Presenting “Count Me If You Can” at ICML 2026" },
+{ src: "gallery/ICML_Group2.jpg", caption: "Team SPARC Labs at Coex, ICML 2026 · Seoul" },
+{ src: "gallery/ICML_PosterAM.jpg", caption: "Poster session — geometric failure modes in LM counting" },
+{ src: "gallery/ICML_PosterNB.jpg", caption: "Fielding questions on the counting-geometry poster" },
+{ src: "gallery/ICML_PosterNC.jpg", caption: "Nicole Ching presenting sparse-autoencoder work on chromatin models" }];
+
+function Moments() {
+  const [i, setI] = useState(0);
+  useEffect(() => {
+    const id = setInterval(() => setI((v) => (v + 1) % GALLERY.length), 5000);
+    return () => clearInterval(id);
+  }, []);
+  return (
+    <section className="section" id="moments">
+      <div className="container">
+        <SectionHead kicker="§ 05 — Moments" meta="">
+          On the ground at <em>conferences</em> and in the lab.
+        </SectionHead>
+        <div className="gallery reveal">
+          <div className="gallery-stage">
+            {GALLERY.map((g, idx) =>
+            <figure key={idx} className={idx === i ? "gallery-slide is-active" : "gallery-slide"}>
+                <img src={g.src} alt={g.caption} loading={idx === 0 ? "eager" : "lazy"} />
+                <figcaption>{g.caption}</figcaption>
+              </figure>
+            )}
+          </div>
+          <div className="gallery-thumbs">
+            {GALLERY.map((g, idx) =>
+            <button key={idx} className={idx === i ? "gallery-thumb is-active" : "gallery-thumb"}
+              aria-label={`Show photo ${idx + 1}`} onClick={() => setI(idx)}>
+                <img src={g.src} alt="" loading="lazy" />
+              </button>
+            )}
+          </div>
+        </div>
+        <EditNote>✎ Add photos: drop a file in gallery/ and add a line to GALLERY in app.jsx</EditNote>
+      </div>
+    </section>);
+
+}
+
 function Contact() {
   return (
     <section className="contact" id="contact">
@@ -806,6 +849,7 @@ function Footer() {
             <a href="#mission">Mission</a>
             <a href="#publications">Publications</a>
             <a href="#current-research">Current research</a>
+            <a href="#moments">Moments</a>
             <a href="Transparency.html">Transparency</a>
           </div>
           <div className="col">
@@ -888,6 +932,7 @@ function App() {
       <Publications />
       <CurrentResearch />
       <Events />
+      <Moments />
       <Contact />
       <Footer />
 
