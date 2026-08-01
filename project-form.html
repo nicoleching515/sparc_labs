@@ -58,7 +58,7 @@ button:disabled{background:#c8c8c8;cursor:default}
 </div>
 <script>
 // ✎ paste your Apps Script /exec URL here (same one used elsewhere on the site)
-const PROJECT_FORM_ENDPOINT = "#";
+const PROJECT_FORM_ENDPOINT = "https://script.google.com/macros/s/AKfycby7Ji_oR7jmNouCSuaPXcCnbkJpPFqH59paxT-plfLq5OakVrs9F386YPoAe2bqMXpibw/exec";
 
 const params = new URLSearchParams(location.search);
 const project = params.get("project") || "this project";
@@ -81,7 +81,7 @@ document.getElementById("applyForm").addEventListener("submit", function(e){
     document.getElementById("formCard").style.display = "none";
     document.getElementById("doneCard").style.display = "block";
   };
-  if (!PROJECT_FORM_ENDPOINT || PROJECT_FORM_ENDPOINT === "https://script.google.com/macros/s/AKfycby7Ji_oR7jmNouCSuaPXcCnbkJpPFqH59paxT-plfLq5OakVrs9F386YPoAe2bqMXpibw/exec") { finish(); return; }
+  if (!PROJECT_FORM_ENDPOINT || PROJECT_FORM_ENDPOINT === "#") { finish(); return; }
   fetch(PROJECT_FORM_ENDPOINT, {
     method: "POST",
     mode: "no-cors",
