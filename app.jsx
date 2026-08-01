@@ -587,52 +587,11 @@ function Publications() {
 
 }
 
-function ProjectApplyModal({ project, onClose }) {
-  const [status, setStatus] = useState("idle"); // idle | sending | done
-  const [form, setForm] = useState({ name: "", email: "", grade: "", reason: "", experience: "" });
-  const set = (k) => (e) => setForm((f) => ({ ...f, [k]: e.target.value }));
-  const submit = (e) => {
-    e.preventDefault();
-    if (!PROJECT_FORM_ENDPOINT || PROJECT_FORM_ENDPOINT === "#") { setStatus("done"); return; }
-    setStatus("sending");
-    fetch(PROJECT_FORM_ENDPOINT, {
-      method: "POST",
-      mode: "no-cors",
-      headers: { "Content-Type": "text/plain" },
-      body: JSON.stringify({ project, ...form })
-    }).then(() => setStatus("done")).catch(() => setStatus("done"));
-  };
-  return (
-    <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-card" onClick={(e) => e.stopPropagation()}>
-        <button className="modal-close" onClick={onClose} aria-label="Close">×</button>
-        {status === "done" ?
-        <div className="modal-done">
-            <h3>Thanks — you're in the queue.</h3>
-            <p>We'll follow up by email about {project}.</p>
-          </div> :
-        <>
-            <span className="eyebrow">Interest form</span>
-            <h3>{project}</h3>
-            <form className="apply-form" onSubmit={submit}>
-              <label>Name<input required value={form.name} onChange={set("name")} /></label>
-              <label>Email<input required type="email" value={form.email} onChange={set("email")} /></label>
-              <label>Grade / year<input required value={form.grade} onChange={set("grade")} placeholder="e.g. Sophomore" /></label>
-              <label>Why this project?<textarea required rows="3" value={form.reason} onChange={set("reason")} /></label>
-              <label>Relevant experience<textarea rows="3" value={form.experience} onChange={set("experience")} /></label>
-              <button className="btn" type="submit" disabled={status === "sending"}>
-                {status === "sending" ? "Sending…" : "Submit"} <span className="arrow">→</span>
-              </button>
-            </form>
-          </>}
-      </div>
-    </div>);
-
-}
-
 function CurrentResearch() {
   const projects = useSheetProjects();
-  const [active, setActive] = useState(null);
+  const openForm = (title) => {
+    window.open(`project-form.html?project=${encodeURIComponent(title)}`, "_blank", "noopener,width=560,height=760");
+  };
   return (
     <section className="section" id="current-research">
       <div className="container">
@@ -643,7 +602,7 @@ function CurrentResearch() {
         {projects.length > 0 ?
         <div className="pubs reveal">
           {projects.map((p, i) =>
-          <button key={i} type="button" className="pub nolink pub-clickable" onClick={() => setActive(p.title)}>
+          <div key={i} className="pub nolink pub-clickable" onClick={() => openForm(p.title)}>
               <span className="year">{p.subjects || "—"}</span>
               <span className="title">
                 {p.title}
@@ -652,13 +611,12 @@ function CurrentResearch() {
               <span className="authors">{p.members ? `${p.members} members` : ""}</span>
               <span className="venue">{p.venue || ""}</span>
               <span className="arrow">→</span>
-            </button>
+            </div>
           )}
         </div> :
         <div className="list-empty reveal">More coming soon!</div>}
         <EditNote>✎ Auto-populated from the "Current Projects" Google Sheet · shows rows marked Active · click a project to apply</EditNote>
       </div>
-      {active && <ProjectApplyModal project={active} onClose={() => setActive(null)} />}
     </section>);
 
 }
