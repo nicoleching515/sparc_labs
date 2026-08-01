@@ -1584,40 +1584,7 @@ img { max-width: 100%; display: block; }
 .gallery-thumb.is-active { opacity: 1; border-color: var(--accent); }
 @media (max-width: 620px) { .gallery-thumb { width: 60px; height: 40px; } }
 
-/* ---------- Project apply modal ---------- */
-
-.pub-clickable { width: 100%; background: none; border: none; text-align: left; cursor: pointer; font: inherit; color: inherit; }
-.pub-clickable:hover { background: var(--bg-2); }
-.modal-overlay {
-  position: fixed; inset: 0; z-index: 100;
-  background: rgba(10,9,8,0.72);
-  display: flex; align-items: center; justify-content: center;
-  padding: 24px;
-}
-.modal-card {
-  position: relative;
-  width: 100%; max-width: 480px;
-  max-height: 86vh; overflow-y: auto;
-  background: var(--bg); border: 1px solid var(--line-2);
-  padding: 36px;
-}
-.modal-close {
-  position: absolute; top: 14px; right: 14px;
-  width: 32px; height: 32px; border: none; background: none;
-  font-size: 22px; line-height: 1; color: var(--muted); cursor: pointer;
-}
-.modal-close:hover { color: var(--accent); }
-.modal-card h3 { margin: 6px 0 20px; font-family: var(--sans); font-weight: 600; font-size: 22px; }
-.apply-form { display: flex; flex-direction: column; gap: 16px; }
-.apply-form label { display: flex; flex-direction: column; gap: 6px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
-.apply-form input, .apply-form textarea {
-  font-family: var(--sans); font-size: 14px; color: var(--fg);
-  background: var(--bg-2); border: 1px solid var(--line-2); padding: 10px 12px;
-  resize: vertical;
-}
-.apply-form input:focus, .apply-form textarea:focus { outline: none; border-color: var(--accent); }
-.apply-form .btn { align-self: flex-start; margin-top: 4px; }
-.modal-done h3 { margin-top: 0; }
+.pub-clickable { cursor: pointer; }
 
 /* ---------- Reveal animation ---------- */
 
