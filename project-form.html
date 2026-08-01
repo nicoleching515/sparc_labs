@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Project interest form</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" />
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f0ebf8;font-family:'Roboto',Arial,sans-serif;min-height:100vh;padding:24px 16px}
+.wrap{max-width:640px;margin:0 auto}
+.topbar{height:10px;border-radius:8px 8px 0 0;background:#673ab7}
+.card{background:#fff;border:1px solid #dadce0;border-top:none;padding:28px 24px;margin-bottom:16px}
+.card.header{border-radius:0 0 8px 8px}
+h1{font-size:22px;font-weight:400;margin:0 0 6px;color:#202124}
+.desc{font-size:14px;color:#444;margin:0}
+.q{border-radius:8px}
+label{display:block;font-size:14px;color:#202124;margin-bottom:10px}
+.req{color:#d93025}
+input,textarea{width:100%;border:none;border-bottom:1px solid #dadce0;padding:8px 0;font-size:14px;font-family:inherit;background:transparent}
+input:focus,textarea:focus{outline:none;border-bottom:2px solid #673ab7;margin-bottom:-1px}
+textarea{resize:vertical}
+.field{margin-bottom:28px}
+.actions{display:flex;align-items:center;justify-content:space-between;margin-top:8px}
+button{background:#673ab7;color:#fff;border:none;padding:10px 24px;border-radius:4px;font-size:14px;font-weight:500;cursor:pointer;font-family:inherit}
+button:hover{background:#5a2fa0}
+button:disabled{background:#c8c8c8;cursor:default}
+.done{text-align:center;padding:40px 20px}
+.done h2{font-weight:400;color:#202124}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar"></div>
+  <div class="card header">
+    <h1 id="formTitle">Project interest form</h1>
+    <p class="desc" id="formDesc">Tell us a bit about yourself and why you'd like to join.</p>
+  </div>
+  <div class="card q" id="formCard">
+    <form id="applyForm">
+      <div class="field"><label>Name <span class="req">*</span></label><input required id="name" /></div>
+      <div class="field"><label>Email <span class="req">*</span></label><input required type="email" id="email" /></div>
+      <div class="field"><label>Grade / year <span class="req">*</span></label><input required id="grade" placeholder="e.g. Sophomore" /></div>
+      <div class="field"><label>Why this project? <span class="req">*</span></label><textarea required rows="3" id="reason"></textarea></div>
+      <div class="field"><label>Relevant experience</label><textarea rows="3" id="experience"></textarea></div>
+      <div class="actions">
+        <button type="submit" id="submitBtn">Submit</button>
+      </div>
+    </form>
+  </div>
+  <div class="card q" id="doneCard" style="display:none">
+    <div class="done">
+      <h2>Thanks — you're in the queue.</h2>
+      <p class="desc">We'll follow up by email about this project.</p>
+    </div>
+  </div>
+</div>
+<script>
+// ✎ paste your Apps Script /exec URL here (same one used elsewhere on the site)
+const PROJECT_FORM_ENDPOINT = "#";
+
+const params = new URLSearchParams(location.search);
+const project = params.get("project") || "this project";
+document.getElementById("formTitle").textContent = project;
+document.getElementById("formDesc").textContent = "Interested in joining? Fill this out and we'll be in touch.";
+
+document.getElementById("applyForm").addEventListener("submit", function(e){
+  e.preventDefault();
+  const btn = document.getElementById("submitBtn");
+  btn.disabled = true; btn.textContent = "Sending…";
+  const payload = {
+    project: project,
+    name: document.getElementById("name").value,
+    email: document.getElementById("email").value,
+    grade: document.getElementById("grade").value,
+    reason: document.getElementById("reason").value,
+    experience: document.getElementById("experience").value
+  };
+  const finish = () => {
+    document.getElementById("formCard").style.display = "none";
+    document.getElementById("doneCard").style.display = "block";
+  };
+  if (!PROJECT_FORM_ENDPOINT || PROJECT_FORM_ENDPOINT === "https://script.google.com/macros/s/AKfycby7Ji_oR7jmNouCSuaPXcCnbkJpPFqH59paxT-plfLq5OakVrs9F386YPoAe2bqMXpibw/exec") { finish(); return; }
+  fetch(PROJECT_FORM_ENDPOINT, {
+    method: "POST",
+    mode: "no-cors",
+    headers: { "Content-Type": "text/plain" },
+    body: JSON.stringify(payload)
+  }).then(finish).catch(finish);
+});
+</script>
+</body>
+</html>
