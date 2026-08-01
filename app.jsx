@@ -317,13 +317,11 @@ function Hero({ accent, bg, fg }) {
           <a className="hero-page-link" href="Transparency.html">Transparency <span className="arrow">→</span></a>
         </div>
         <h1 className="display hero-title">
-           <span className="accent-word">SPARC</span> <span className="brand-labs">Labs</span>,<br />
-          cultivated<br />
-          on campus.
+           <span className="accent-word">SPARC</span> <span className="brand-labs">Labs</span>
         </h1>
         <div className="hero-sub-row">
           <p>
-            <em>SPARC</em> <span className="brand-labs">Labs</span> is a student-led academic research group at Caltech — fostering original work in machine learning and AI with applications intersecting across scientific fields through industry & lab partnerships, public speaker series, and a community that takes the questions seriously.
+            <em>SPARC</em> <span className="brand-labs">Labs</span> is a student-led academic research group at Caltech dedicated to fostering original work in machine learning and AI with applications intersecting across scientific fields through industry & lab partnerships, public speaker series, and a community that takes the questions seriously.
           </p>
         </div>
 
@@ -508,7 +506,7 @@ function Objectives() {
     <section className="section" id="mission">
       <div className="container">
         <SectionHead kicker="§ 01 — Mission" meta="">
-          We are an <em> AI + X research group</em>, not a club — organized around original work, partnership, public exchange, and community.
+          We are an <em> AI + X research group</em>.
         </SectionHead>
         <div className="objectives reveal">
           {OBJECTIVES.map((o) =>
@@ -594,7 +592,7 @@ function CurrentResearch() {
       <div className="container">
         <SectionHead kicker="§ 03 — Current Research" meta=""
           cta={{ caption: "Interested in working on research with us?", label: "Project application form", href: PROJECT_APP_FORM_URL, external: true, center: true }}>
-          Teams currently <em>in flight</em> — the work happening now.
+          The work happening <em>now</em>.
         </SectionHead>
         {projects.length > 0 ?
         <div className="pubs reveal">
@@ -697,7 +695,7 @@ function Events() {
     <section className="section" id="events">
       <div className="container">
         <SectionHead kicker="§ 04 — Speaker Series" meta="">
-          Bi-weekly talks. <em>Recent papers</em> and open problems.
+          Bi-weekly talks. <em>Recent papers</em>.
         </SectionHead>
         {list.length > 0 ?
         <div className="events-list reveal">
