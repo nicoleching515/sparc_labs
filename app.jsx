@@ -327,7 +327,7 @@ function Hero({ accent, bg, fg }) {
 
         <div className="hero-cta">
           <a className="btn lg" href="#contact">Get in touch <span className="arrow">→</span></a>
-          <a className="btn ghost lg" href={PROJECT_APP_FORM_URL} target="_blank" rel="noopener noreferrer">Join project</a>
+          <a className="btn ghost lg" href="#current-research">Join project</a>
           <a className="btn ghost lg" href={PROPOSAL_FORM_URL} target="_blank" rel="noopener noreferrer">Make a project</a>
         </div>
       </div>
@@ -379,6 +379,7 @@ const PROJECT_APP_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSfOtov00X
 const INSTAGRAM_URL = "https://www.instagram.com/caltech.sparc.labs/";         /* ✎ Instagram profile (https://instagram.com/…) */
 const LINKEDIN_URL = "https://www.linkedin.com/company/sparc-labs-caltech/posts/?feedView=all";          /* ✎ LinkedIn page (https://linkedin.com/company/…) */
 const MAILING_LIST_URL = "#";      /* ✎ Mailing-list signup link */
+const PROJECT_FORM_ENDPOINT = "#https://script.google.com/macros/s/AKfycby7Ji_oR7jmNouCSuaPXcCnbkJpPFqH59paxT-plfLq5OakVrs9F386YPoAe2bqMXpibw/exec"; /* ✎ paste your Apps Script /exec URL here */
 
 /* ─── ✎ CURRENT RESEARCH — auto-populated from a Google Sheet ───────────
    The section reads the “Current Projects” sheet live and shows only rows
@@ -586,19 +587,63 @@ function Publications() {
 
 }
 
+function ProjectApplyModal({ project, onClose }) {
+  const [status, setStatus] = useState("idle"); // idle | sending | done
+  const [form, setForm] = useState({ name: "", email: "", grade: "", reason: "", experience: "" });
+  const set = (k) => (e) => setForm((f) => ({ ...f, [k]: e.target.value }));
+  const submit = (e) => {
+    e.preventDefault();
+    if (!PROJECT_FORM_ENDPOINT || PROJECT_FORM_ENDPOINT === "#") { setStatus("done"); return; }
+    setStatus("sending");
+    fetch(PROJECT_FORM_ENDPOINT, {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "text/plain" },
+      body: JSON.stringify({ project, ...form })
+    }).then(() => setStatus("done")).catch(() => setStatus("done"));
+  };
+  return (
+    <div className="modal-overlay" onClick={onClose}>
+      <div className="modal-card" onClick={(e) => e.stopPropagation()}>
+        <button className="modal-close" onClick={onClose} aria-label="Close">×</button>
+        {status === "done" ?
+        <div className="modal-done">
+            <h3>Thanks — you're in the queue.</h3>
+            <p>We'll follow up by email about {project}.</p>
+          </div> :
+        <>
+            <span className="eyebrow">Interest form</span>
+            <h3>{project}</h3>
+            <form className="apply-form" onSubmit={submit}>
+              <label>Name<input required value={form.name} onChange={set("name")} /></label>
+              <label>Email<input required type="email" value={form.email} onChange={set("email")} /></label>
+              <label>Grade / year<input required value={form.grade} onChange={set("grade")} placeholder="e.g. Sophomore" /></label>
+              <label>Why this project?<textarea required rows="3" value={form.reason} onChange={set("reason")} /></label>
+              <label>Relevant experience<textarea rows="3" value={form.experience} onChange={set("experience")} /></label>
+              <button className="btn" type="submit" disabled={status === "sending"}>
+                {status === "sending" ? "Sending…" : "Submit"} <span className="arrow">→</span>
+              </button>
+            </form>
+          </>}
+      </div>
+    </div>);
+
+}
+
 function CurrentResearch() {
   const projects = useSheetProjects();
+  const [active, setActive] = useState(null);
   return (
     <section className="section" id="current-research">
       <div className="container">
         <SectionHead kicker="§ 03 — Current Research" meta=""
           cta={{ caption: "Interested in working on research with us?", label: "Project application form", href: PROJECT_APP_FORM_URL, external: true, center: true }}>
-          The work happening <em>now</em>.
+          Teams currently <em>in flight</em> — the work happening now.
         </SectionHead>
         {projects.length > 0 ?
         <div className="pubs reveal">
           {projects.map((p, i) =>
-          <div key={i} className="pub nolink">
+          <button key={i} type="button" className="pub nolink pub-clickable" onClick={() => setActive(p.title)}>
               <span className="year">{p.subjects || "—"}</span>
               <span className="title">
                 {p.title}
@@ -606,13 +651,14 @@ function CurrentResearch() {
               </span>
               <span className="authors">{p.members ? `${p.members} members` : ""}</span>
               <span className="venue">{p.venue || ""}</span>
-              <span className="arrow"></span>
-            </div>
+              <span className="arrow">→</span>
+            </button>
           )}
         </div> :
         <div className="list-empty reveal">More coming soon!</div>}
-        <EditNote>✎ Auto-populated from the “Current Projects” Google Sheet · shows rows marked Active</EditNote>
+        <EditNote>✎ Auto-populated from the "Current Projects" Google Sheet · shows rows marked Active · click a project to apply</EditNote>
       </div>
+      {active && <ProjectApplyModal project={active} onClose={() => setActive(null)} />}
     </section>);
 
 }
