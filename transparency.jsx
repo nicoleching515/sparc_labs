@@ -148,7 +148,7 @@ function PageHead() {
           <span className="accent-word">Transparency</span>
         </h1>
         <p className="page-head-sub reveal">
-          How SPARC Labs operates, written down — name, purpose, membership,
+          How SPARC Labs operates, written down to highlight name, purpose, membership,
           officer roles, funds, and how credit on shared work is settled. This is
           the club's constitution, adopted July 2026. The summary below tracks the
           official document; read the full text from the side.
@@ -162,7 +162,7 @@ function Transparency() {
     <section className="section" id="governance">
       <div className="container">
         <SectionHead kicker="§ — Constitution" meta="Adopted 3 July 2026 · AY 25–26">
-          The <em>articles</em> — name, purpose, membership, officers, funds, and how credit is settled.
+          The <em>articles</em>.
         </SectionHead>
         <div className="charter reveal">
           {CHARTER.map((a) =>
