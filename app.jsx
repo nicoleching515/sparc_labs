@@ -327,7 +327,8 @@ function Hero({ accent, bg, fg }) {
 
         <div className="hero-cta">
           <a className="btn lg" href="#contact">Get in touch <span className="arrow">→</span></a>
-          <a className="btn ghost lg" href="#publications">Browse research</a>
+          <a className="btn ghost lg" href={PROJECT_APP_FORM_URL} target="_blank" rel="noopener noreferrer">Join project</a>
+          <a className="btn ghost lg" href={PROPOSAL_FORM_URL} target="_blank" rel="noopener noreferrer">Make a project</a>
         </div>
       </div>
     </section>);
