@@ -481,7 +481,8 @@ function SectionHead({ kicker, meta, cta, children }) {
         {cta &&
         <div className={cta.center ? "section-head-cta centered" : "section-head-cta"}>
           <span className="cta-caption">{cta.caption}</span>
-          {(() => {
+          {cta.label &&
+          (() => {
             const pending = !cta.href || cta.href === "#";
             return (
               <a className={pending ? "btn btn-pending" : "btn"}
@@ -492,7 +493,7 @@ function SectionHead({ kicker, meta, cta, children }) {
                 {cta.label} <span className="arrow">→</span>
               </a>);
           })()}
-        </div>
+        </div>}
         }
       </div>
     </div>);
@@ -596,7 +597,7 @@ function CurrentResearch() {
     <section className="section" id="current-research">
       <div className="container">
         <SectionHead kicker="§ 03 — Current Research" meta=""
-          cta={{ caption: "Interested in working on research with us?", label: "Project application form", href: PROJECT_APP_FORM_URL, external: true, center: true }}>
+          cta={{ caption: "Interested in working on research with us? Click any of the projects below to apply!", center: true }}>
           Teams currently <em>in flight</em> — the work happening now.
         </SectionHead>
         {projects.length > 0 ?
