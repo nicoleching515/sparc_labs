@@ -597,7 +597,7 @@ function CurrentResearch() {
       <div className="container">
         <SectionHead kicker="§ 03 — Current Research" meta=""
           cta={{ caption: "Interested in working on research with us? Click any of the projects below to apply!", center: true }}>
-          Teams currently <em>in flight</em> — the work happening now.
+          The work happening <em>now</em>.
         </SectionHead>
         {projects.length > 0 ?
         <div className="pubs reveal">
