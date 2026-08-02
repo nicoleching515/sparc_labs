@@ -18,9 +18,10 @@ h1{font-size:22px;font-weight:400;margin:0 0 6px;color:#202124}
 .q{border-radius:8px}
 label{display:block;font-size:14px;color:#202124;margin-bottom:10px}
 .req{color:#d93025}
-input,textarea{width:100%;border:none;border-bottom:1px solid #dadce0;padding:8px 0;font-size:14px;font-family:inherit;background:transparent}
-input:focus,textarea:focus{outline:none;border-bottom:2px solid #673ab7;margin-bottom:-1px}
-textarea{resize:vertical}
+input{width:100%;border:none;border-bottom:1px solid #dadce0;padding:8px 0;font-size:14px;font-family:inherit;background:transparent}
+textarea{width:100%;border:1px solid #dadce0;border-radius:4px;padding:8px;font-size:14px;font-family:inherit;background:transparent}\
+input:focus{outline:none;border-bottom:2px solid #673ab7;margin-bottom:-1px}
+textarea:focus{outline:none;border:1px solid #673ab7;border-radius:4px;margin-bottom:-1px;padding:8px}textarea{resize:vertical;display:block;line-height:1.5}
 .field{margin-bottom:28px}
 .actions{display:flex;align-items:center;justify-content:space-between;margin-top:8px}
 button{background:#673ab7;color:#fff;border:none;padding:10px 24px;border-radius:4px;font-size:14px;font-weight:500;cursor:pointer;font-family:inherit}
@@ -41,9 +42,9 @@ button:disabled{background:#c8c8c8;cursor:default}
     <form id="applyForm">
       <div class="field"><label>Name <span class="req">*</span></label><input required id="name" /></div>
       <div class="field"><label>Email <span class="req">*</span></label><input required type="email" id="email" /></div>
-      <div class="field"><label>Grade / year <span class="req">*</span></label><input required id="grade" placeholder="e.g. Sophomore" /></div>
+      <div class="field"><label>Grade <span class="req">*</span></label><input required id="grade" placeholder="e.g. Sophomore" /></div>
       <div class="field"><label>Why this project? <span class="req">*</span></label><textarea required rows="3" id="reason"></textarea></div>
-      <div class="field"><label>Relevant experience</label><textarea rows="3" id="experience"></textarea></div>
+      <div class="field"><label>Relevant Experience</label><textarea rows="3" id="experience"></textarea></div>
       <div class="actions">
         <button type="submit" id="submitBtn">Submit</button>
       </div>
