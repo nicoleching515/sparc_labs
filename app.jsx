@@ -474,10 +474,10 @@ function SectionHead({ kicker, meta, cta, children }) {
     <div className="section-head reveal">
       <div className="label">
         <span className="eyebrow">{kicker}</span>
-        {meta && <div className="meta">{meta}</div>}
+        {meta && <span className="meta">{meta}</span>}
       </div>
       <div className={cta ? "section-head-main with-cta" : "section-head-main"}>
-        <h2>{children}</h2>
+        <h2 className="display">{children}</h2>
         {cta &&
         <div className={cta.center ? "section-head-cta centered" : "section-head-cta"}>
           <span className="cta-caption">{cta.caption}</span>
@@ -494,7 +494,6 @@ function SectionHead({ kicker, meta, cta, children }) {
               </a>);
           })()}
         </div>}
-        }
       </div>
     </div>);
 
