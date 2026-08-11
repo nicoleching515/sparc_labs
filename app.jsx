@@ -390,7 +390,7 @@ const PROJECT_FORM_ENDPOINT = "#https://script.google.com/macros/s/AKfycby7Ji_oR
    ─────────────────────────────────────────────────────────────────────── */
 const SHEET_ID = "1TbF_dmU6EGUw3hmAbtsmduEbtp0IxBYM-oEiepR5mvg";
 const SHEET_FALLBACK = [
-{ title: "Motion planning in partially known environments", subjects: "EAS", members: "0 – 5", venue: "IROS Workshop" }];
+{ title: "Motion planning in partially known environments", subjects: "EAS", members: "0 – 5", venue: "IROS Workshop", accepting: false, proposal: "" }];
 
 function useSheetProjects() {
   const [projects, setProjects] = useState(SHEET_FALLBACK);
@@ -411,11 +411,12 @@ function useSheetProjects() {
       }
       const at = (needle) => cols.findIndex((l) => l.includes(needle));
       const iDesc = at("description"), iActive = at("active"),
-      iSub = at("subject"), iMem = at("member"), iConf = at("conference");
+      iSub = at("subject"), iMem = at("member"), iConf = at("conference"),
+      iAcc = at("accepting"), iProp = at("proposal");
       const active = rows.
       filter((c) => c[iDesc] && /^y/i.test(c[iActive] || "")).
-      map((c) => ({ title: c[iDesc], subjects: c[iSub], members: c[iMem], venue: c[iConf] }));
-      setProjects(active);
+      map((c) => ({ title: c[iDesc], subjects: c[iSub], members: c[iMem], venue: c[iConf],
+         accepting: /^y/i.test(c[iAcc] || ""), proposal: c[iProp] || "" }));      setProjects(active);
     }).
     catch(() => {});
   }, []);
@@ -589,24 +590,25 @@ function Publications() {
 
 function CurrentResearch() {
   const projects = useSheetProjects();
-  const openForm = (title) => {
-    window.open(`project-form.html?project=${encodeURIComponent(title)}`, "_blank", "noopener,width=560,height=760");
+  const openProject = (title) => {
+    window.open(`project.html?project=${encodeURIComponent(title)}`, "_blank", "noopener");
   };
   return (
     <section className="section" id="current-research">
       <div className="container">
-        <SectionHead kicker="§ 02 — Current Research" meta=""
+        <SectionHead kicker="§ 03 — Current Research" meta=""
           cta={{ caption: "Interested in working on research with us? Click any of the projects below to apply!", center: true }}>
           The work happening <em>now</em>.
         </SectionHead>
         {projects.length > 0 ?
         <div className="pubs reveal">
           {projects.map((p, i) =>
-          <div key={i} className="pub nolink pub-clickable" onClick={() => openForm(p.title)}>
+          <div key={i} className="pub nolink pub-clickable" onClick={() => openProject(p.title)}>
               <span className="year">{p.subjects || "—"}</span>
               <span className="title">
                 {p.title}
                 <span className="pub-tag" style={{ borderColor: "rgb(255, 108, 12)" }}>Active</span>
+                {p.accepting && <span className="accepting-dot" title="Accepting new members" aria-label="Accepting new members"></span>}
               </span>
               <span className="authors">{p.members ? `${p.members} members` : ""}</span>
               <span className="venue">{p.venue || ""}</span>
