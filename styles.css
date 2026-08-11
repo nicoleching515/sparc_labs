@@ -1584,8 +1584,6 @@ img { max-width: 100%; display: block; }
 .gallery-thumb.is-active { opacity: 1; border-color: var(--accent); }
 @media (max-width: 620px) { .gallery-thumb { width: 60px; height: 40px; } }
 
-.pub-clickable { cursor: pointer; }
-
 /* ---------- Accepting-new-members indicator ---------- */
 
 .pub-clickable { cursor: pointer; }
