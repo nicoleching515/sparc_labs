@@ -1586,6 +1586,22 @@ img { max-width: 100%; display: block; }
 
 .pub-clickable { cursor: pointer; }
 
+/* ---------- Accepting-new-members indicator ---------- */
+
+.pub-clickable { cursor: pointer; }
+.pub.nolink.pub-clickable { cursor: pointer; }
+.pub.nolink.pub-clickable:hover { background: var(--bg-2); }
+.accepting-dot {
+  display: inline-block; width: 8px; height: 8px; border-radius: 50%;
+  background: var(--accent); margin-left: 10px; flex: none; vertical-align: middle;
+  animation: acceptPulse 1.4s ease-in-out infinite;
+}
+@keyframes acceptPulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(255,108,12,0.5); }
+  50%      { opacity: 0.3; box-shadow: 0 0 0 5px rgba(255,108,12,0); }
+}
+@media (prefers-reduced-motion: reduce) { .accepting-dot { animation: none; } }
+
 /* ---------- Reveal animation ---------- */
 
 .reveal {
