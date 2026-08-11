@@ -133,7 +133,7 @@ fetch("https://docs.google.com/spreadsheets/d/" + SHEET_ID + "/gviz/tq?tqx=out:j
   html += '<section><h2><span class="an">03</span> Join this project</h2>';
   if (accepting) {
     html += '<p>This team is currently accepting new members. Read the proposal above, then sign up below.</p>'
-      + '<a class="cta" href="' + esc(proposal || ("mailto:sparc@caltech.edu?subject=" + encodeURIComponent("Interest in " + row[iDesc]))) + '" target="_blank" rel="noopener noreferrer">Sign up for this project \u2192</a>';
+      + '<a class="cta" id="signupBtn" href="project-form.html?project=' + encodeURIComponent(row[iDesc]) + '">Sign up for this project \u2192</a>';
   } else {
     html += '<div class="closed-note">This project is not accepting new members right now. '
       + 'Check the current research list for teams that are, or propose your own project.</div>';
@@ -142,12 +142,13 @@ fetch("https://docs.google.com/spreadsheets/d/" + SHEET_ID + "/gviz/tq?tqx=out:j
 
   html += '<a class="back" href="index.html#current-research">\u2190 All current research</a>';
   doc.innerHTML = html;
+
+  /* Open the sign-up form in a pop-up window rather than a full tab. */
+  var signup = document.getElementById("signupBtn");
+  if (signup) {
+    signup.addEventListener("click", function (ev) {
+      ev.preventDefault();
+      window.open(this.href, "sparcSignup", "width=560,height=760");
+    });
+  }
 })
-.catch(function(){
-  doc.innerHTML = '<div class="doc-title"><span class="ey">Current Research</span><h1>Couldn\u2019t load this project</h1></div>'
-    + '<p>The project list is temporarily unavailable. Please try again in a moment.</p>'
-    + '<a class="back" href="index.html#current-research">\u2190 All current research</a>';
-});
-</script>
-</body>
-</html>
