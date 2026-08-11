@@ -604,9 +604,11 @@ function CurrentResearch() {
         <div className="pubs reveal">
           {projects.map((p, i) =>
           <div key={i} className="pub nolink pub-clickable" onClick={() => openProject(p.title)}>
+              <span className="accepting-slot">
+                {p.accepting && <span className="accepting-dot" title="Accepting new members" aria-label="Accepting new members"></span>}
+              </span>
               <span className="year">{p.subjects || "—"}</span>
-              <span className="title">
-                {p.title}
+              <span className="title">{p.title}</span>
                 <span className="pub-tag" style={{ borderColor: "rgb(255, 108, 12)" }}>Active</span>
                 {p.accepting && <span className="accepting-dot" title="Accepting new members" aria-label="Accepting new members"></span>}
               </span>
