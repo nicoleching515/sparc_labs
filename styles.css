@@ -11,24 +11,6 @@
   --fg:        #eaf0fb;
   --fg-2:      #c2cde2;
   --muted:     #7385a8;
-.pub-clickable { cursor: pointer; }
-.pub.nolink.pub-clickable { cursor: pointer; }
-.pub.nolink.pub-clickable:hover { background: var(--bg-2); }
-
-/* leading indicator column — kept even when empty so rows stay aligned */
-#current-research .pub { grid-template-columns: 10px 80px 1fr 200px 90px 28px; gap: 20px 32px; }
-.accepting-slot { display: flex; align-items: center; justify-content: flex-start; }
-@media (max-width: 1100px) {
-  #current-research .pub { grid-template-columns: 10px 64px 1fr auto 28px; gap: 16px; }
-}
-@media (max-width: 620px) {
-  #current-research .pub { grid-template-columns: 10px 56px 1fr 24px; gap: 12px; }
-}
-.accepting-dot {
-  display: block; width: 8px; height: 8px; border-radius: 50%;
-  background: var(--accent); flex: none;
-  animation: acceptPulse 1.4s ease-in-out infinite;
-}
   --muted-2:   #3b4a6b;
   --line:      #1a2440;
   --line-2:    #243355;
@@ -1609,9 +1591,19 @@ img { max-width: 100%; display: block; }
 .pub-clickable { cursor: pointer; }
 .pub.nolink.pub-clickable { cursor: pointer; }
 .pub.nolink.pub-clickable:hover { background: var(--bg-2); }
+
+/* leading indicator column — kept even when empty so rows stay aligned */
+#current-research .pub { grid-template-columns: 10px 80px 1fr 200px 90px 28px; gap: 20px 32px; }
+.accepting-slot { display: flex; align-items: center; justify-content: flex-start; }
+@media (max-width: 1100px) {
+  #current-research .pub { grid-template-columns: 10px 64px 1fr auto 28px; gap: 16px; }
+}
+@media (max-width: 620px) {
+  #current-research .pub { grid-template-columns: 10px 56px 1fr 24px; gap: 12px; }
+}
 .accepting-dot {
-  display: inline-block; width: 8px; height: 8px; border-radius: 50%;
-  background: var(--accent); margin-left: 10px; flex: none; vertical-align: middle;
+  display: block; width: 8px; height: 8px; border-radius: 50%;
+  background: var(--accent); flex: none;
   animation: acceptPulse 1.4s ease-in-out infinite;
 }
 @keyframes acceptPulse {
