@@ -593,7 +593,7 @@ function CurrentResearch() {
   return (
     <section className="section" id="current-research">
       <div className="container">
-        <SectionHead kicker="§ 03 — Current Research" meta=""
+        <SectionHead kicker="§ 02 — Current Research" meta=""
           cta={{ caption: "Interested in working on research with us? Click any of the projects below to apply!", center: true }}>
           The work happening <em>now</em>.
         </SectionHead>
@@ -606,9 +606,6 @@ function CurrentResearch() {
               </span>
               <span className="year">{p.subjects || "—"}</span>
               <span className="title">{p.title}</span>
-                <span className="pub-tag" style={{ borderColor: "rgb(255, 108, 12)" }}>Active</span>
-                {p.accepting && <span className="accepting-dot" title="Accepting new members" aria-label="Accepting new members"></span>}
-              </span>
               <span className="authors">{p.members ? `${p.members} members` : ""}</span>
               <span className="venue">{p.venue || ""}</span>
               <span className="arrow">→</span>
