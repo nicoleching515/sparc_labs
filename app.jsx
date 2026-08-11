@@ -558,7 +558,7 @@ function Publications() {
   return (
     <section className="section" id="publications">
       <div className="container">
-        <SectionHead kicker="§ 02 — Publications" meta=""
+        <SectionHead kicker="§ 04 — Publications" meta=""
           cta={{ caption: "Have a topic in mind?", label: "Submit project proposal", href: PROPOSAL_FORM_URL, external: true }}>
           What we've <em>published</em>.
         </SectionHead>
@@ -595,7 +595,7 @@ function CurrentResearch() {
   return (
     <section className="section" id="current-research">
       <div className="container">
-        <SectionHead kicker="§ 03 — Current Research" meta=""
+        <SectionHead kicker="§ 02 — Current Research" meta=""
           cta={{ caption: "Interested in working on research with us? Click any of the projects below to apply!", center: true }}>
           The work happening <em>now</em>.
         </SectionHead>
@@ -699,7 +699,7 @@ function Events() {
   return (
     <section className="section" id="events">
       <div className="container">
-        <SectionHead kicker="§ 04 — Speaker Series" meta="">
+        <SectionHead kicker="§ 03 — Speaker Series" meta="">
           Bi-weekly talks. <em>Recent papers</em>.
         </SectionHead>
         {list.length > 0 ?
@@ -871,8 +871,8 @@ function Footer() {
           <div className="col">
             <h4>Index</h4>
             <a href="#mission">Mission</a>
-            <a href="#publications">Publications</a>
             <a href="#current-research">Current research</a>
+            <a href="#publications">Publications</a>
             <a href="#moments">Moments</a>
             <a href="Transparency.html">Transparency</a>
           </div>
@@ -953,9 +953,9 @@ function App() {
       <TopBar />
       <Hero accent={t.accent} bg={bg} fg={fg} />
       <Objectives />
-      <Publications />
       <CurrentResearch />
       <Events />
+      <Publications />
       <Moments />
       <Contact />
       <Footer />
