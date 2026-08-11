@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>SPARC Labs · Project</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Playfair+Display:wght@600;700&display=swap" />
+<style>
+doc-page:not(:defined){visibility:hidden}
+:root{--ink:#1c1815;--ink-2:#4a433b;--muted:#8a8073;--line:#e4ddd0;--accent:#d94f00;--labs:#9c5f3f;--sans:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,sans-serif;--serif:"IBM Plex Serif",Georgia,serif;--mono:"IBM Plex Mono",ui-monospace,Menlo,monospace}
+body{margin:0;background:#cfc7b6}
+doc-page{color:var(--ink);font-family:var(--serif);font-size:11.5pt;line-height:1.62}
+.run-head,.run-foot{display:flex;align-items:center;justify-content:space-between;font-family:var(--mono);font-size:8pt;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.run-head{border-bottom:1px solid var(--line);padding-bottom:8px}
+.run-foot{border-top:1px solid var(--line);padding-top:8px}
+.run-head .wm{color:var(--ink);letter-spacing:.14em}
+.run-head .wm b{color:var(--accent);font-weight:700}
+.run-head .wm i{font-family:var(--serif);font-style:normal;color:var(--labs);letter-spacing:0}
+.doc-title{margin:4px 0 30px}
+.doc-title .ey{font-family:var(--mono);font-size:8.5pt;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:14px}
+.doc-title h1{margin:0;font-family:var(--sans);font-weight:700;letter-spacing:-.02em;font-size:29pt;line-height:1.06;color:var(--accent);text-wrap:pretty}
+.status{display:inline-flex;align-items:center;gap:9px;margin-top:18px;padding:7px 14px;border:1px solid var(--line);font-family:var(--mono);font-size:8.5pt;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2)}
+.status .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);flex:none;animation:pulse 1.4s ease-in-out infinite}
+.status.closed .dot{background:var(--muted);animation:none}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+@media (prefers-reduced-motion:reduce){.status .dot{animation:none}}
+.facts{margin:0 0 30px;border-top:1px solid var(--line)}
+.facts div{display:grid;grid-template-columns:150px 1fr;gap:18px;padding:11px 0;border-bottom:1px solid var(--line)}
+.facts dt{font-family:var(--mono);font-size:8.5pt;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.facts dd{margin:0;font-family:var(--sans);font-size:10.5pt;color:var(--ink)}
+section{margin:0 0 26px}
+h2{margin:0 0 12px;padding-bottom:9px;border-bottom:1px solid var(--line);font-family:var(--sans);font-weight:600;font-size:14.5pt;letter-spacing:-.01em;color:var(--ink);display:flex;align-items:baseline;gap:14px}
+h2 .an{font-family:var(--mono);font-size:9.5pt;font-weight:500;letter-spacing:.1em;color:var(--accent);flex:none;text-transform:uppercase}
+p{margin:0 0 11px}
+.cta{display:inline-flex;align-items:center;gap:12px;margin-top:6px;padding:13px 22px;background:var(--accent);color:#f7f3ea;font-family:var(--mono);font-size:9.5pt;letter-spacing:.12em;text-transform:uppercase;text-decoration:none}
+.cta:hover{background:#b84200}
+.closed-note{padding:18px 20px;border:1px solid var(--line);background:rgba(0,0,0,.02);color:var(--ink-2);font-style:italic}
+.back{display:inline-block;margin-top:8px;font-family:var(--mono);font-size:8.5pt;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);text-decoration:none}
+.back:hover{color:var(--accent)}
+a{color:var(--accent)}
+a:hover{color:#b84200}
+.state{font-family:var(--mono);font-size:9.5pt;letter-spacing:.06em;color:var(--muted)}
+@media print{body{background:#fff}.back{display:none}}
+</style>
+</head>
+<body>
+<template id="__bundler_thumbnail">
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" fill="#f3eee0"/><text x="50" y="52" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-weight="700" font-size="18" fill="#d94f00">SPARC</text><text x="50" y="70" text-anchor="middle" font-family="Playfair Display, Georgia, serif" font-weight="600" font-size="13" fill="#9c5f3f">Labs</text></svg>
+</template>
+
+<doc-page size="letter" margin="0.85in">
+  <div class="run-head" slot="header">
+    <span class="wm"><b>SPARC</b> <i>Labs</i></span>
+    <span>Current Research</span>
+  </div>
+  <div class="run-foot" slot="footer">
+    <span>Project brief</span>
+    <span>California Institute of Technology</span>
+  </div>
+
+  <div id="doc"><p class="state">Loading project…</p></div>
+</doc-page>
+
+<script src="doc-page.js"></script>
+<script>
+/* Reads the same "Current Projects" sheet as the website. To point this page at
+   a different sheet, change SHEET_ID here AND in app.jsx so they stay in sync. */
+var SHEET_ID = "1TbF_dmU6EGUw3hmAbtsmduEbtp0IxBYM-oEiepR5mvg";
+
+var wanted = new URLSearchParams(location.search).get("project") || "";
+var doc = document.getElementById("doc");
+
+function esc(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+
+fetch("https://docs.google.com/spreadsheets/d/" + SHEET_ID + "/gviz/tq?tqx=out:json")
+.then(function(r){return r.text();})
+.then(function(txt){
+  var data = JSON.parse(txt.slice(txt.indexOf("{"), txt.lastIndexOf("}") + 1));
+  var cols = (data.table.cols || []).map(function(c){return (c.label || "").toLowerCase();});
+  var rows = (data.table.rows || []).map(function(r){
+    return (r.c || []).map(function(c){return c && c.v != null ? String(c.v).trim() : "";});
+  });
+  if (!cols.some(function(l){return l;})) { cols = (rows[0] || []).map(function(s){return s.toLowerCase();}); rows = rows.slice(1); }
+  function at(n){return cols.findIndex(function(l){return l.indexOf(n) !== -1;});}
+  var iDesc = at("description"), iActive = at("active"), iSub = at("subject"),
+      iMem = at("member"), iConf = at("conference"), iAcc = at("accepting"), iProp = at("proposal");
+
+  var row = rows.filter(function(c){ return c[iDesc] && /^y/i.test(c[iActive] || ""); })
+                .filter(function(c){ return c[iDesc] === wanted; })[0];
+  if (!row) {
+    doc.innerHTML = '<div class="doc-title"><span class="ey">Current Research</span>'
+      + '<h1>Project not found</h1></div>'
+      + '<p>This project is no longer listed as active. Head back to the site to see what\u2019s currently in flight.</p>'
+      + '<a class="back" href="index.html#current-research">\u2190 All current research</a>';
+    return;
+  }
+
+  var accepting = /^y/i.test(row[iAcc] || "");
+  var proposal = row[iProp] || "";
+
+  var html = '<div class="doc-title"><span class="ey">Current Research \u00b7 Project brief</span>'
+    + '<h1>' + esc(row[iDesc]) + '</h1>'
+    + '<span class="status' + (accepting ? '' : ' closed') + '"><span class="dot"></span>'
+    + (accepting ? 'Accepting new members' : 'Not accepting new members') + '</span></div>';
+
+  html += '<dl class="facts">'
+    + '<div><dt>Subjects</dt><dd>' + esc(row[iSub] || "\u2014") + '</dd></div>'
+    + '<div><dt>Team size</dt><dd>' + esc(row[iMem] || "\u2014") + '</dd></div>'
+    + '<div><dt>Intended venue</dt><dd>' + esc(row[iConf] || "\u2014") + '</dd></div>'
+    + '<div><dt>Status</dt><dd>Active</dd></div>'
+    + '</dl>';
+
+  html += '<section><h2><span class="an">01</span> About this project</h2>'
+    + '<p>' + esc(row[iDesc]) + ' is an active SPARC Labs research project'
+    + (row[iSub] ? ' spanning ' + esc(row[iSub]) : '') + '.'
+    + (row[iConf] ? ' The team is working toward ' + esc(row[iConf]) + '.' : '')
+    + ' Read the full proposal below for scope, methods, and current progress.</p></section>';
+
+  /* Project proposal — always shown, whether or not the team is recruiting. */
+  html += '<section><h2><span class="an">02</span> Project proposal</h2>';
+  if (proposal) {
+    html += '<p>The full proposal covers scope, methods, and current progress.</p>'
+      + '<a class="cta" href="' + esc(proposal) + '" target="_blank" rel="noopener noreferrer">Read the project proposal \u2192</a>';
+  } else {
+    html += '<div class="closed-note">The proposal for this project hasn\u2019t been posted yet. '
+      + 'Email <a href="mailto:sparc@caltech.edu?subject=' + encodeURIComponent("Proposal for " + row[iDesc]) + '">sparc@caltech.edu</a> to request a copy.</div>';
+  }
+  html += '</section>';
+
+  /* Sign-up button only appears while the team is accepting new members. */
+  html += '<section><h2><span class="an">03</span> Join this project</h2>';
+  if (accepting) {
+    html += '<p>This team is currently accepting new members. Read the proposal above, then sign up below.</p>'
+      + '<a class="cta" href="' + esc(proposal || ("mailto:sparc@caltech.edu?subject=" + encodeURIComponent("Interest in " + row[iDesc]))) + '" target="_blank" rel="noopener noreferrer">Sign up for this project \u2192</a>';
+  } else {
+    html += '<div class="closed-note">This project is not accepting new members right now. '
+      + 'Check the current research list for teams that are, or propose your own project.</div>';
+  }
+  html += '</section>';
+
+  html += '<a class="back" href="index.html#current-research">\u2190 All current research</a>';
+  doc.innerHTML = html;
+})
+.catch(function(){
+  doc.innerHTML = '<div class="doc-title"><span class="ey">Current Research</span><h1>Couldn\u2019t load this project</h1></div>'
+    + '<p>The project list is temporarily unavailable. Please try again in a moment.</p>'
+    + '<a class="back" href="index.html#current-research">\u2190 All current research</a>';
+});
+</script>
+</body>
+</html>
