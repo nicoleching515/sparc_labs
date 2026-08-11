@@ -572,10 +572,7 @@ function Publications() {
                target={hasLink ? "_blank" : undefined}
                rel={hasLink ? "noopener noreferrer" : undefined}>
               <span className="year">{p.year}</span>
-              <span className="title">
-                {p.title}
-                {p.tag && <span className={`pub-tag ${p.tag === "preprint" ? "preprint" : ""}`} style={{ borderColor: "rgb(255, 108, 12)" }}>{p.tag}</span>}
-              </span>
+              <span className="title">{p.title}</span>
               <span className="authors">{p.authors}</span>
               <span className="venue">{p.venue}</span>
               <span className="arrow">{hasLink ? "→" : ""}</span>
