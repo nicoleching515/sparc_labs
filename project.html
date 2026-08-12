@@ -37,6 +37,10 @@ p{margin:0 0 11px}
 .cta{display:inline-flex;align-items:center;gap:12px;margin-top:6px;padding:13px 22px;background:var(--accent);color:#f7f3ea;font-family:var(--mono);font-size:9.5pt;letter-spacing:.12em;text-transform:uppercase;text-decoration:none}
 .cta:hover{background:#b84200}
 .closed-note{padding:18px 20px;border:1px solid var(--line);background:rgba(0,0,0,.02);color:var(--ink-2);font-style:italic}
+.proposal-embed{border:1px solid var(--line);background:#fff;margin-bottom:12px}
+.proposal-embed iframe{display:block;width:100%;height:820px;border:0}
+.proposal-open{display:inline-block;font-family:var(--mono);font-size:8.5pt;letter-spacing:.12em;text-transform:uppercase;text-decoration:none}
+@media print{.proposal-embed{display:none}}
 .back{display:inline-block;margin-top:8px;font-family:var(--mono);font-size:8.5pt;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);text-decoration:none}
 .back:hover{color:var(--accent)}
 a{color:var(--accent)}
@@ -46,10 +50,6 @@ a:hover{color:#b84200}
 </style>
 </head>
 <body>
-<template id="__bundler_thumbnail">
-<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" fill="#f3eee0"/><text x="50" y="52" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-weight="700" font-size="18" fill="#d94f00">SPARC</text><text x="50" y="70" text-anchor="middle" font-family="Playfair Display, Georgia, serif" font-weight="600" font-size="13" fill="#9c5f3f">Labs</text></svg>
-</template>
-
 <doc-page size="letter" margin="0.85in">
   <div class="run-head" slot="header">
     <span class="wm"><b>SPARC</b> <i>Labs</i></span>
@@ -72,7 +72,49 @@ var SHEET_ID = "1TbF_dmU6EGUw3hmAbtsmduEbtp0IxBYM-oEiepR5mvg";
 var wanted = new URLSearchParams(location.search).get("project") || "";
 var doc = document.getElementById("doc");
 
+/* Content is injected after the sheet fetch resolves, which is later than
+   doc-page's initial header/footer measurement. Writing through render()
+   makes the component re-measure so the running header can't overlap. */
+function render(markup){
+  doc.innerHTML = markup;
+  var page = document.querySelector("doc-page");
+  var remeasure = function(){
+    if (page && typeof page._measure === "function") page._measure();
+    else window.dispatchEvent(new Event("resize"));
+  };
+  requestAnimationFrame(function(){
+    remeasure();
+    requestAnimationFrame(remeasure);
+  });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(remeasure);
+}
+
+/* Turn a Drive / Docs share URL into its embeddable /preview form so the
+   proposal renders inside this page instead of sending people off-site.
+   Works for docs, slides, sheets and uploaded PDFs shared "anyone with the
+   link". Returns "" if the URL isn't a recognisable Drive link. */
+function embedUrl(u){
+  u = String(u || "").trim();
+  if (!u) return "";
+  var m = u.match(/\/(document|presentation|spreadsheets)\/d\/([a-zA-Z0-9_-]+)/);
+  if (m) return "https://docs.google.com/" + m[1] + "/d/" + m[2] + "/preview";
+  m = u.match(/drive\.google\.com\/file\/d\/([a-zA-Z0-9_-]+)/);
+  if (m) return "https://drive.google.com/file/d/" + m[1] + "/preview";
+  m = u.match(/[?&]id=([a-zA-Z0-9_-]+)/);
+  if (m) return "https://drive.google.com/file/d/" + m[1] + "/preview";
+  return "";
+}
+
 function esc(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+
+/* Loose title match: ignores case, curly quotes, dashes and extra spaces so a
+   small edit in the sheet doesn't break the link from the main site. */
+function norm(s){
+  return String(s==null?"":s).toLowerCase()
+    .replace(/[\u2018\u2019]/g,"'").replace(/[\u201c\u201d]/g,'"')
+    .replace(/[\u2010-\u2015]/g,"-")
+    .replace(/\s+/g," ").trim();
+}
 
 fetch("https://docs.google.com/spreadsheets/d/" + SHEET_ID + "/gviz/tq?tqx=out:json")
 .then(function(r){return r.text();})
@@ -88,12 +130,12 @@ fetch("https://docs.google.com/spreadsheets/d/" + SHEET_ID + "/gviz/tq?tqx=out:j
       iMem = at("member"), iConf = at("conference"), iAcc = at("accepting"), iProp = at("proposal");
 
   var row = rows.filter(function(c){ return c[iDesc] && /^y/i.test(c[iActive] || ""); })
-                .filter(function(c){ return c[iDesc] === wanted; })[0];
+                .filter(function(c){ return norm(c[iDesc]) === norm(wanted); })[0];
   if (!row) {
-    doc.innerHTML = '<div class="doc-title"><span class="ey">Current Research</span>'
+    render('<div class="doc-title"><span class="ey">Current Research</span>'
       + '<h1>Project not found</h1></div>'
       + '<p>This project is no longer listed as active. Head back to the site to see what\u2019s currently in flight.</p>'
-      + '<a class="back" href="index.html#current-research">\u2190 All current research</a>';
+      + '<a class="back" href="index.html#current-research">\u2190 All current research</a>');
     return;
   }
 
@@ -118,9 +160,14 @@ fetch("https://docs.google.com/spreadsheets/d/" + SHEET_ID + "/gviz/tq?tqx=out:j
     + (row[iConf] ? ' The team is working toward ' + esc(row[iConf]) + '.' : '')
     + ' Read the full proposal below for scope, methods, and current progress.</p></section>';
 
-  /* Project proposal — always shown, whether or not the team is recruiting. */
+  /* Project proposal — always shown, whether or not the team is recruiting.
+     Rendered inline like the constitution page rather than as an outbound link. */
   html += '<section><h2><span class="an">02</span> Project proposal</h2>';
-  if (proposal) {
+  var embed = embedUrl(proposal);
+  if (embed) {
+    html += '<div class="proposal-embed"><iframe src="' + esc(embed) + '" title="Project proposal" loading="lazy" allow="autoplay"></iframe></div>'
+      + '<a class="proposal-open" href="' + esc(proposal) + '" target="_blank" rel="noopener noreferrer">Open the proposal in a new tab \u2197</a>';
+  } else if (proposal) {
     html += '<p>The full proposal covers scope, methods, and current progress.</p>'
       + '<a class="cta" href="' + esc(proposal) + '" target="_blank" rel="noopener noreferrer">Read the project proposal \u2192</a>';
   } else {
@@ -141,7 +188,7 @@ fetch("https://docs.google.com/spreadsheets/d/" + SHEET_ID + "/gviz/tq?tqx=out:j
   html += '</section>';
 
   html += '<a class="back" href="index.html#current-research">\u2190 All current research</a>';
-  doc.innerHTML = html;
+  render(html);
 
   /* Open the sign-up form in a pop-up window rather than a full tab. */
   var signup = document.getElementById("signupBtn");
@@ -152,3 +199,11 @@ fetch("https://docs.google.com/spreadsheets/d/" + SHEET_ID + "/gviz/tq?tqx=out:j
     });
   }
 })
+.catch(function(){
+  render('<div class="doc-title"><span class="ey">Current Research</span><h1>Couldn\u2019t load this project</h1></div>'
+    + '<p>The project list is temporarily unavailable. Please try again in a moment.</p>'
+    + '<a class="back" href="index.html#current-research">\u2190 All current research</a>');
+});
+</script>
+</body>
+</html>
