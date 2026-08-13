@@ -129,8 +129,7 @@ fetch("https://docs.google.com/spreadsheets/d/" + SHEET_ID + "/gviz/tq?tqx=out:j
   var iDesc = at("description"), iActive = at("active"), iSub = at("subject"),
       iMem = at("member"), iConf = at("conference"), iAcc = at("accepting"), iProp = at("proposal"),
       iAbs = at("abstract");
-  var abstract = iAbs === -1 ? "" : (row[iAbs] || "");
-
+  
   var row = rows.filter(function(c){ return c[iDesc] && /^y/i.test(c[iActive] || ""); })
                 .filter(function(c){ return norm(c[iDesc]) === norm(wanted); })[0];
   if (!row) {
@@ -143,6 +142,7 @@ fetch("https://docs.google.com/spreadsheets/d/" + SHEET_ID + "/gviz/tq?tqx=out:j
 
   var accepting = /^y/i.test(row[iAcc] || "");
   var proposal = row[iProp] || "";
+  var abstract = iAbs === -1 ? "" : (row[iAbs] || "");
 
   var html = '<div class="doc-title"><span class="ey">Current Research \u00b7 Project brief</span>'
     + '<h1>' + esc(row[iDesc]) + '</h1>'
