@@ -605,7 +605,10 @@ function CurrentResearch() {
                 {p.accepting && <span className="accepting-dot" title="Accepting new members" aria-label="Accepting new members"></span>}
               </span>
               <span className="year">{p.subjects || "—"}</span>
-              <span className="title">{p.title}</span>
+              <span className="title">
+                {p.title}
+                {p.accepting && <span className="pub-tag accepting-tag">Accepting new members</span>}
+              </span>
               <span className="authors">{p.members ? `${p.members} members` : ""}</span>
               <span className="venue">{p.venue || ""}</span>
               <span className="arrow">→</span>
