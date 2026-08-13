@@ -127,7 +127,9 @@ fetch("https://docs.google.com/spreadsheets/d/" + SHEET_ID + "/gviz/tq?tqx=out:j
   if (!cols.some(function(l){return l;})) { cols = (rows[0] || []).map(function(s){return s.toLowerCase();}); rows = rows.slice(1); }
   function at(n){return cols.findIndex(function(l){return l.indexOf(n) !== -1;});}
   var iDesc = at("description"), iActive = at("active"), iSub = at("subject"),
-      iMem = at("member"), iConf = at("conference"), iAcc = at("accepting"), iProp = at("proposal");
+      iMem = at("member"), iConf = at("conference"), iAcc = at("accepting"), iProp = at("proposal"),
+      iAbs = at("abstract");
+  var abstract = iAbs === -1 ? "" : (row[iAbs] || "");
 
   var row = rows.filter(function(c){ return c[iDesc] && /^y/i.test(c[iActive] || ""); })
                 .filter(function(c){ return norm(c[iDesc]) === norm(wanted); })[0];
@@ -158,21 +160,15 @@ fetch("https://docs.google.com/spreadsheets/d/" + SHEET_ID + "/gviz/tq?tqx=out:j
     + '<p>' + esc(row[iDesc]) + ' is an active SPARC Labs research project'
     + (row[iSub] ? ' spanning ' + esc(row[iSub]) : '') + '.'
     + (row[iConf] ? ' The team is working toward ' + esc(row[iConf]) + '.' : '')
-    + ' Read the full proposal below for scope, methods, and current progress.</p></section>';
+    + ' Read the abstract below for scope, methods, and current progress.</p></section>';
 
-  /* Project proposal — always shown, whether or not the team is recruiting.
-     Rendered inline like the constitution page rather than as an outbound link. */
-  html += '<section><h2><span class="an">02</span> Project proposal</h2>';
-  var embed = embedUrl(proposal);
-  if (embed) {
-    html += '<div class="proposal-embed"><iframe src="' + esc(embed) + '" title="Project proposal" loading="lazy" allow="autoplay"></iframe></div>'
-      + '<a class="proposal-open" href="' + esc(proposal) + '" target="_blank" rel="noopener noreferrer">Open the proposal in a new tab \u2197</a>';
-  } else if (proposal) {
-    html += '<p>The full proposal covers scope, methods, and current progress.</p>'
-      + '<a class="cta" href="' + esc(proposal) + '" target="_blank" rel="noopener noreferrer">Read the project proposal \u2192</a>';
+  /* Abstract — pulled from the sheet's "Project abstract" column. */
+  html += '<section><h2><span class="an">02</span> Abstract</h2>';
+  if (abstract) {
+    html += abstract.split(/\n+/).filter(function(s){return s.trim();})
+      .map(function(s){return '<p>' + esc(s.trim()) + '</p>';}).join('');
   } else {
-    html += '<div class="closed-note">The proposal for this project hasn\u2019t been posted yet. '
-      + 'Email <a href="mailto:sparc@caltech.edu?subject=' + encodeURIComponent("Proposal for " + row[iDesc]) + '">sparc@caltech.edu</a> to request a copy.</div>';
+    html += '<div class="closed-note">The abstract for this project hasn\u2019t been posted yet.</div>';
   }
   html += '</section>';
 
