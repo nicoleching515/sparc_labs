@@ -1584,8 +1584,23 @@ img { max-width: 100%; display: block; }
 .gallery-thumb.is-active { opacity: 1; border-color: var(--accent); }
 @media (max-width: 620px) { .gallery-thumb { width: 60px; height: 40px; } }
 
-/* ---------- Accepting-new-members indicator ---------- */
+/* ---------- "View all" link under a truncated list ---------- */
 
+.list-more {
+  display: inline-flex; align-items: center; gap: 10px;
+  margin-top: 28px;
+  font-family: var(--mono); font-size: 11px;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--fg); text-decoration: none;
+  border-bottom: 1px solid var(--line-2);
+  padding-bottom: 6px;
+  transition: color var(--t-fast), border-color var(--t-fast);
+}
+.list-more .arrow { transition: transform var(--t-med); display: inline-block; }
+.list-more:hover { color: var(--accent); border-color: var(--accent); }
+.list-more:hover .arrow { transform: translateX(4px); }
+
+/* ---------- Accepting-new-members indicator ---------- */
 .pub-clickable { cursor: pointer; }
 .pub.nolink.pub-clickable { cursor: pointer; }
 .pub.nolink.pub-clickable:hover { background: var(--bg-2); }
