@@ -42,7 +42,7 @@ function TopBar() {
           <span>SPARC</span>
           <span className="brand-labs">Labs</span>
         </a>
-        <nav className="topnav">
+        <nav className="nav" aria-label="Primary">
           <a href="index.html#mission">Mission</a>
           <a href="publications.html">Publications</a>
           <a href="events.html">Events</a>
