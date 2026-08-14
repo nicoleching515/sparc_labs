@@ -213,7 +213,7 @@ function Footer() {
           <div className="col">
             <h4>Index</h4>
             <a href="index.html#mission">Mission</a>
-            <a href="index.html#publications">Publications</a>
+            <a href="publications.html">Publications</a>
             <a href="index.html#current-research">Current research</a>
             <a href="Transparency.html">Transparency</a>
             <a href="Constitution.html" target="_blank" rel="noopener">Full constitution</a>
@@ -221,7 +221,7 @@ function Footer() {
           <div className="col">
             <h4>Engage</h4>
             <a href="index.html#contact">Contact</a>
-            <a href="index.html#events">Speaker series</a>
+            <a href="events.html">Speaker series</a>
             <a href="#">Mailing list</a>
             <a href="#">For partners</a>
           </div>
