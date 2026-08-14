@@ -128,7 +128,7 @@ fetch("https://docs.google.com/spreadsheets/d/" + SHEET_ID + "/gviz/tq?tqx=out:j
   function at(n){return cols.findIndex(function(l){return l.indexOf(n) !== -1;});}
   var iDesc = at("description"), iActive = at("active"), iSub = at("subject"),
       iMem = at("member"), iConf = at("conference"), iAcc = at("accepting"), iProp = at("proposal"),
-      iAbs = at("abstract");
+      iAbs = at("abstract"), iLead = at("lead"), iPoc = at("point of contact"), iCollab = at("collaborat");
   
   var row = rows.filter(function(c){ return c[iDesc] && /^y/i.test(c[iActive] || ""); })
                 .filter(function(c){ return norm(c[iDesc]) === norm(wanted); })[0];
@@ -143,7 +143,16 @@ fetch("https://docs.google.com/spreadsheets/d/" + SHEET_ID + "/gviz/tq?tqx=out:j
   var accepting = /^y/i.test(row[iAcc] || "");
   var proposal = row[iProp] || "";
   var abstract = iAbs === -1 ? "" : (row[iAbs] || "");
+  var leads = iLead === -1 ? "" : (row[iLead] || "");
+  var poc = iPoc === -1 ? "" : (row[iPoc] || "");
+  var collab = iCollab === -1 ? "" : (row[iCollab] || "");
 
+  /* Turn "name@caltech.edu (555-1234)" into a mailto link, keeping trailing text. */
+  function pocHtml(v){
+    var m = String(v).match(/[^\s<>()]+@[^\s<>(),]+/);
+    if (!m) return esc(v);
+    return esc(v).replace(esc(m[0]), '<a href="mailto:' + esc(m[0]) + '">' + esc(m[0]) + '</a>');
+  }
   var html = '<div class="doc-title"><span class="ey">Current Research \u00b7 Project brief</span>'
     + '<h1>' + esc(row[iDesc]) + '</h1>'
     + '<span class="status' + (accepting ? '' : ' closed') + '"><span class="dot"></span>'
@@ -153,6 +162,8 @@ fetch("https://docs.google.com/spreadsheets/d/" + SHEET_ID + "/gviz/tq?tqx=out:j
     + '<div><dt>Subjects</dt><dd>' + esc(row[iSub] || "\u2014") + '</dd></div>'
     + '<div><dt>Team size</dt><dd>' + esc(row[iMem] || "\u2014") + '</dd></div>'
     + '<div><dt>Intended venue</dt><dd>' + esc(row[iConf] || "\u2014") + '</dd></div>'
+    + '<div><dt>Point of contact</dt><dd>' + (poc ? pocHtml(poc) : "\u2014") + '</dd></div>'
+    + (collab ? '<div><dt>Collaboration</dt><dd>' + esc(collab) + '</dd></div>' : '')
     + '<div><dt>Status</dt><dd>Active</dd></div>'
     + '</dl>';
 
