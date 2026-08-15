@@ -86,7 +86,8 @@
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
 
-html { background: var(--bg); scroll-behavior: smooth; }
+html { background: var(--bg); scroll-behavior: smooth; scroll-snap-type: y proximity; }
+.section, .hero, .page-head { scroll-snap-align: start; }
 body {
   background: var(--bg);
   color: var(--fg);
@@ -574,7 +575,6 @@ img { max-width: 100%; display: block; }
   transition: background var(--t-fast);
 }
 .obj:last-child { border-right: none; }
-.obj:hover { background: var(--bg-2); }
 .obj .num {
   font-family: var(--mono);
   font-size: 12px;
@@ -1606,14 +1606,15 @@ img { max-width: 100%; display: block; }
 .pub.nolink.pub-clickable:hover { background: var(--bg-2); }
 
 /* leading indicator column — kept even when empty so rows stay aligned */
-#current-research .pub { grid-template-columns: 10px 80px 1fr 200px 90px 28px; gap: 20px 32px; }
+#current-research .pub { grid-template-columns: 10px 80px 1fr 200px 90px 28px; gap: 20px 32px; padding-left: 14px; padding-right: 14px; margin-left: -14px; margin-right: -14px; }
+#current-research .pub:hover { padding-left: 14px; padding-right: 14px; }
 .accepting-slot { display: flex; align-items: center; justify-content: flex-start; }
 .accepting-tag { border-color: var(--accent); color: var(--accent); }
 @media (max-width: 1100px) {
-  #current-research .pub { grid-template-columns: 10px 64px 1fr auto 28px; gap: 16px; }
+  #current-research .pub { grid-template-columns: 10px 64px 1fr auto 28px; gap: 16px; padding-left: 14px; padding-right: 14px; margin-left: -14px; margin-right: -14px; }
 }
 @media (max-width: 620px) {
-  #current-research .pub { grid-template-columns: 10px 56px 1fr 24px; gap: 12px; }
+  #current-research .pub { grid-template-columns: 10px 56px 1fr 24px; gap: 12px; padding-left: 14px; padding-right: 14px; margin-left: -14px; margin-right: -14px; }
 }
 .accepting-dot {
   display: block; width: 8px; height: 8px; border-radius: 50%;
