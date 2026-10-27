@@ -91,18 +91,25 @@ function PubRow({ p }) {
 
 function EventRow({ e }) {
   return (
-    <a className="event" href="#">
-      <span className="date">{e.date}</span>
-      <span className="title" style={{ display: "flex", flexDirection: "column", gap: 2 }}>
-        <strong style={{ fontWeight: 600 }}>{e.speaker}</strong>
-        {e.venue && <span style={{ fontSize: "0.85em", color: "rgb(255, 108, 12)", fontWeight: 500 }}>{e.venue}</span>}
+    <div className="event"
+      style={{ display: "flex", flexWrap: "wrap", alignItems: "baseline", gap: "10px 32px", gridTemplateColumns: "none", cursor: "default" }}>
+      <span className="date" style={{ flex: "0 0 90px" }}>{e.date}</span>
+
+      <span style={{ flex: "1 1 240px", display: "flex", flexDirection: "column", gap: 4, minWidth: 0 }}>
+        <span style={{ fontSize: "1.35em", fontWeight: 600, lineHeight: 1.2 }}>{e.name}</span>
+        {e.affiliation &&
+          <span style={{ color: "var(--accent, #ff6c0c)", fontWeight: 500 }}>{e.affiliation}</span>}
+        {e.role &&
+          <span style={{ fontSize: "0.85em", opacity: 0.6 }}>{e.role}</span>}
       </span>
-      <span className="speaker" style={{ fontStyle: e.talk ? "italic" : "normal", opacity: e.talk ? 1 : 0.5 }}>
-        {e.talk ? <>“{e.talk}”</> : "Talk TBA"}
+
+      <span style={{ flex: "2 1 300px", minWidth: 0, display: "flex", flexDirection: "column", gap: 4 }}>
+        <span style={{ fontSize: "0.75em", letterSpacing: "0.08em", textTransform: "uppercase", opacity: 0.55 }}>Talk</span>
+        <span style={{ fontStyle: e.talk ? "italic" : "normal", opacity: e.talk ? 1 : 0.5, textWrap: "pretty" }}>
+          {e.talk ? <>“{e.talk}”</> : "Title TBA"}
+        </span>
       </span>
-      <span className="venue" style={{ opacity: 0.7 }}>{e.title}</span>
-      <span className="arrow">→</span>
-    </a>);
+    </div>);
 }
 
 Object.assign(window, { PUBS, HOME_LIMIT, EVENTS_SHEET_ID, useSheetEvents, PubRow, EventRow });
