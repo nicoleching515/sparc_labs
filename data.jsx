@@ -92,10 +92,10 @@ function PubRow({ p }) {
 function EventRow({ e }) {
   return (
     <div className="event"
-      style={{ display: "flex", flexWrap: "wrap", alignItems: "baseline", gap: "10px 32px", gridTemplateColumns: "none", cursor: "default" }}>
+      style={{ display: "flex", flexWrap: "wrap", alignItems: "baseline", gap: "10px 20px", gridTemplateColumns: "none", cursor: "default" }}>
       <span className="date" style={{ flex: "0 0 90px" }}>{e.date}</span>
 
-      <span style={{ flex: "1 1 240px", display: "flex", flexDirection: "column", gap: 4, minWidth: 0 }}>
+      <span style={{ flex: "0 1 260px", display: "flex", flexDirection: "column", gap: 4, minWidth: 0 }}>
         <span style={{ fontSize: "1.35em", fontWeight: 600, lineHeight: 1.2 }}>{e.name}</span>
         {e.affiliation &&
           <span style={{ color: "var(--accent, #ff6c0c)", fontWeight: 500 }}>{e.affiliation}</span>}
@@ -103,9 +103,9 @@ function EventRow({ e }) {
           <span style={{ fontSize: "0.85em", opacity: 0.6 }}>{e.role}</span>}
       </span>
 
-      <span style={{ flex: "2 1 300px", minWidth: 0, display: "flex", flexDirection: "column", gap: 4 }}>
+      <span style={{ flex: "1 1 320px", minWidth: 0, display: "flex", flexDirection: "column", gap: 4 }}>
         <span style={{ fontSize: "0.75em", letterSpacing: "0.08em", textTransform: "uppercase", opacity: 0.55 }}>Talk</span>
-        <span style={{ fontStyle: e.talk ? "italic" : "normal", opacity: e.talk ? 1 : 0.5, textWrap: "pretty" }}>
+        <span style={{ fontSize: "1.3em", lineHeight: 1.3, fontStyle: e.talk ? "italic" : "normal", opacity: e.talk ? 1 : 0.5, textWrap: "pretty" }}>
           {e.talk ? <>“{e.talk}”</> : "Title TBA"}
         </span>
       </span>
