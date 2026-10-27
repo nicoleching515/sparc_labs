@@ -17,9 +17,12 @@ const HOME_LIMIT = 5;
 const PUBS = [
 { year: "2026", title: <>BEACON: Belief-Aware Replanning for Safe Online Motion Planning</>, authors: "Ishita Banerjee, Maggie Yufei Bai, Soptorshi Ghosh, Rhea Senan, Ayushi Mehrotra", venue: "IEEE ICRA 2026 Workshop Xplore", tag: "ICRA Workshop Poster", url: "https://openreview.net/forum?id=zxinuYvMp2" /* ✓ paper link */ },
 { year: "2026", title: <>Count Me If You Can: Geometric Failure Modes in Language Model Counting</>, authors: "Nicholas Bai, Ayushi Mehrotra", venue: "ICML 2026 Workshop CompLearn", tag: "ICML Workshop Poster", url: "https://openreview.net/forum?id=8PAXj6x6zn" /* ✓ paper link */ },
-{ year: "2026", title: <>Sparse Autoencoders Find Causal, Lineage-Specific Context Features in Chromatin Foundation Models</>, authors: "Nicole Ching, Ayushi Mehrotra", venue: "ICML 2026 Workshop CompLearn and Mech Interp", tag: "ICML Workshop Poster", url: "#" /* ✎ paste paper link here */ },
-{ year: "2026", title: <>What Does a Chromatin Foundation Model Know About a Petri Dish? Sparse Autoencoders Reveal In Vitro vs. In Vivo Context in EPIBERT</>, authors: "Nicole Ching, Ayushi Mehrotra", venue: "ICML 2026 Workshop GenBio", tag: "ICML Workshop Poster", url: "#" /* ✎ paste paper link here */ },
-{ year: "2026", title: <>Auditing a Multi-Modal Chromatin Foundation Model with Sparse Autoencoders</>, authors: "Nicole Ching, Ayushi Mehrotra", venue: "ICML 2026 Workshop FM4LS", tag: "ICML Workshop Poster", url: "#" /* ✎ paste paper link here */ }];
+{ year: "2026", title: <>Sparse Autoencoders Find Causal, Lineage-Specific Context Features in Chromatin Foundation Models</>, authors: "Nicole Ching, Ayushi Mehrotra", venue: "ICML 2026 Workshop CompLearn and Mech Interp", tag: "ICML Workshop Poster", url: "https://openreview.net/forum?id=exjnua3lM2" /* ✎ paste paper link here */ },
+{ year: "2026", title: <>What Does a Chromatin Foundation Model Know About a Petri Dish? Sparse Autoencoders Reveal In Vitro vs. In Vivo Context in EPIBERT</>, authors: "Nicole Ching, Ayushi Mehrotra", venue: "ICML 2026 Workshop GenBio", tag: "ICML Workshop Poster", url: "https://openreview.net/forum?id=JI9duJaATU" /* ✎ paste paper link here */ },
+{ year: "2026", title: <>Auditing a Multi-Modal Chromatin Foundation Model with Sparse Autoencoders</>, authors: "Nicole Ching, Ayushi Mehrotra", venue: "ICML 2026 Workshop FM4LS", tag: "ICML Workshop Poster", url: "https://openreview.net/forum?id=TaVoSYbvNn" /* ✎ paste paper link here */ },
+{ year: "2026", title: <>Compute Allocation for Planners with Physically Misspecified World Models</>, authors: "Jan Safrata, Nicholas Ciordas", venue: "NeurIPS 2026 Workshop PhysUnderstand", tag: "NeurIPS Workshop Poster", url: "https://openreview.net/pdf?id=qig156FVzY" /* ✓ paper link */ },
+{ year: "2026", title: <>Interpreting Physics in Video Encoders using Multi-Object Interaction Videos</>, authors: "Ayushi Mehrotra", venue: "NeurIPS 2026 WM PAI Workshop", tag: "NeurIPS Workshop Poster", url: "https://openreview.net/pdf?id=xMnjaHNogE" /* ✓ paper link */ },
+];
 
 
 /* ─── ✎ SPEAKER SERIES — auto-populated from a Google Sheet ─────────────
