@@ -54,11 +54,13 @@ function useSheetEvents() {
         rows = rows.slice(1);
       }
       const at = (needle) => cols.findIndex((l) => l.includes(needle));
-      const iDate = at("date"), iTitle = at("title"),
+      const iDate = at("date"),
+      iTitle = cols.findIndex((l) => l.includes("title") && !l.includes("talk")),
+      iTalk = at("talk"),
       iSpk = at("speaker"), iAff = at("affil"), iConf = at("confirm");
       const confirmed = rows.
       filter((c) => (c[iTitle] || c[iDate]) && /^y/i.test(String(c[iConf] || ""))).
-      map((c) => ({ date: fmt(c[iDate]), title: c[iTitle], speaker: c[iSpk], venue: c[iAff] }));
+      map((c) => ({ date: fmt(c[iDate]), title: c[iTitle], talk: iTalk >= 0 ? c[iTalk] : "", speaker: c[iSpk], venue: c[iAff] }));
       setEvents(confirmed);
     }).
     catch(() => setEvents([]));
@@ -91,12 +93,16 @@ function EventRow({ e }) {
   return (
     <a className="event" href="#">
       <span className="date">{e.date}</span>
-      <span className="title">{e.title}</span>
-      <span className="speaker">{e.speaker}</span>
-      <span className="venue">{e.venue}</span>
+      <span className="title" style={{ display: "flex", flexDirection: "column", gap: 2 }}>
+        <strong style={{ fontWeight: 600 }}>{e.speaker}</strong>
+        {e.venue && <span style={{ fontSize: "0.85em", color: "rgb(255, 108, 12)", fontWeight: 500 }}>{e.venue}</span>}
+      </span>
+      <span className="speaker" style={{ fontStyle: e.talk ? "italic" : "normal", opacity: e.talk ? 1 : 0.5 }}>
+        {e.talk ? <>“{e.talk}”</> : "Talk TBA"}
+      </span>
+      <span className="venue" style={{ opacity: 0.7 }}>{e.title}</span>
       <span className="arrow">→</span>
     </a>);
-
 }
 
 Object.assign(window, { PUBS, HOME_LIMIT, EVENTS_SHEET_ID, useSheetEvents, PubRow, EventRow });
