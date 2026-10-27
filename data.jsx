@@ -92,10 +92,10 @@ function PubRow({ p }) {
 function EventRow({ e }) {
   return (
     <div className="event"
-      style={{ display: "flex", flexWrap: "wrap", alignItems: "baseline", gap: "8x 20px", gridTemplateColumns: "none", cursor: "default" }}>
+      style={{ display: "flex", flexWrap: "wrap", alignItems: "baseline", gap: "10x 20px", gridTemplateColumns: "none", cursor: "default" }}>
       <span className="date" style={{ flex: "0 0 90px" }}>{e.date}</span>
 
-      <span style={{ flex: "0 0 auto", maxWidth: 220, display: "flex", flexDirection: "column", gap: 4, minWidth: 0 }}>
+      <span style={{ flex: "0 1 260px", display: "flex", flexDirection: "column", gap: 4, minWidth: 0 }}>
         <span style={{ fontSize: "1.35em", fontWeight: 600, lineHeight: 1.2 }}>{e.name}</span>
         {e.affiliation &&
           <span style={{ color: "var(--accent, #ff6c0c)", fontWeight: 500 }}>{e.affiliation}</span>}
