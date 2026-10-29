@@ -53,14 +53,24 @@ function useSheetEvents() {
         cols = (rows[0] || []).map((s) => String(s).toLowerCase());
         rows = rows.slice(1);
       }
-      const at = (needle) => cols.findIndex((l) => l.includes(needle));
-      const iDate = at("date"),
-      iTitle = cols.findIndex((l) => l.includes("title") && !l.includes("talk")),
-      iTalk = at("talk"),
-      iSpk = at("speaker"), iAff = at("affil"), iConf = at("confirm");
+      const find = (...needles) => cols.findIndex((l) => needles.some((n) => l.includes(n)));
+      const iDate = find("date");
+      const iTalk = find("talk", "topic", "abstract");
+      const iName = find("speaker", "name");
+      const iRole = cols.findIndex((l, i) => i !== iTalk && i !== iName && (l.includes("title") || l.includes("position") || l.includes("role")));
+      const iAff = find("affil", "institution", "organization");
+      const iConf = find("confirm");
+      const get = (c, i) => i >= 0 && c[i] != null ? String(c[i]) : "";
+
       const confirmed = rows.
-      filter((c) => (c[iTitle] || c[iDate]) && /^y/i.test(String(c[iConf] || ""))).
-      map((c) => ({ date: fmt(c[iDate]), title: c[iTitle], talk: iTalk >= 0 ? c[iTalk] : "", speaker: c[iSpk], venue: c[iAff] }));
+      filter((c) => (get(c, iName) || get(c, iDate)) && /^y/i.test(get(c, iConf))).
+      map((c) => ({
+        date: fmt(c[iDate]),
+        name: get(c, iName),
+        role: get(c, iRole),
+        affiliation: get(c, iAff),
+        talk: get(c, iTalk)
+      }));
       setEvents(confirmed);
     }).
     catch(() => setEvents([]));
@@ -74,9 +84,9 @@ function PubRow({ p }) {
   const hasLink = p.url && p.url !== "#";
   return (
     <a className={`pub ${hasLink ? "" : "nolink"}`}
-      href={hasLink ? p.url : undefined}
-      target={hasLink ? "_blank" : undefined}
-      rel={hasLink ? "noopener noreferrer" : undefined}>
+    href={hasLink ? p.url : undefined}
+    target={hasLink ? "_blank" : undefined}
+    rel={hasLink ? "noopener noreferrer" : undefined}>
       <span className="year">{p.year}</span>
       <span className="title">
         {p.title}
@@ -86,16 +96,15 @@ function PubRow({ p }) {
       <span className="venue">{p.venue}</span>
       <span className="arrow">{hasLink ? "→" : ""}</span>
     </a>);
-
 }
 
 function EventRow({ e }) {
   return (
     <div className="event"
-      style={{ display: "flex", flexWrap: "wrap", alignItems: "baseline", gap: "10x 20px", gridTemplateColumns: "none", cursor: "default" }}>
+      style={{ display: "flex", flexWrap: "wrap", alignItems: "baseline", gap: "8px 12px", gridTemplateColumns: "none", cursor: "default" }}>
       <span className="date" style={{ flex: "0 0 90px" }}>{e.date}</span>
 
-      <span style={{ flex: "0 1 260px", display: "flex", flexDirection: "column", gap: 4, minWidth: 0 }}>
+      <span style={{ flex: "0 0 auto", maxWidth: 220, display: "flex", flexDirection: "column", gap: 4, minWidth: 0 }}>
         <span style={{ fontSize: "1.35em", fontWeight: 600, lineHeight: 1.2 }}>{e.name}</span>
         {e.affiliation &&
           <span style={{ color: "var(--accent, #ff6c0c)", fontWeight: 500 }}>{e.affiliation}</span>}
