@@ -645,7 +645,7 @@ function Events() {
     <section className="section" id="events">
       <div className="container">
         <SectionHead kicker="§ 03 — Speaker Series" meta="">
-          Bi-weekly talks. <em>Recent papers</em>.
+          Upcoming talks.
         </SectionHead>
         {list.length > 0 ?
         <div className="events-list reveal">
