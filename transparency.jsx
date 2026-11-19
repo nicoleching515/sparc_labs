@@ -238,6 +238,10 @@ function Footer() {
         </div>
         <div className="footer-bottom">
           <span>© MMXXVI — Caltech ASCIT-affiliated student org</span>
+          <a href="https://www.caltech.edu/privacy-notice" target="_blank" rel="noopener noreferrer"
+             style={{ color: "inherit", textDecoration: "underline", textUnderlineOffset: 3 }}>
+            Caltech Privacy Notice
+          </a>
         </div>
       </div>
     </footer>);
